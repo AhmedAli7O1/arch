@@ -28,6 +28,6 @@ module.exports = {
 
 const createLog = function (args) {
   const text = _.toArray(args);
-  text.unshift(APP.NAME_CONSOLE);
+  text.unshift(APP.cliName);
   return text;
 };
