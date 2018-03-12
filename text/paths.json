@@ -1,0 +1,8 @@
+{
+    "config": "config",
+    "api": "api",
+    "specification": "specification",
+    "arcJsConfig": "arc.json",
+    "extensions": "node_modules",
+    "bootstrap": "bootstrap.js"
+  }
