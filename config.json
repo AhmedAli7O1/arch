@@ -1,4 +1,5 @@
 {
+  "cliName": "[ NodeArch ]",
   "paths": {
     "plugins": "${app}/api",
     "plugin": "${app}/api/${plugin}",

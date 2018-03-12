@@ -2,6 +2,8 @@
 
 const loader = require('../../lib/loader');
 const path = require('path');
+const { expect } = require("chai");
+
 
 const TEST_DATA_LOC = path.resolve(__dirname, '..', '..', 'testData', 'structure');
 
@@ -11,15 +13,34 @@ const testSpec = path.join(TEST_DATA_LOC, "specification.json");
 //const loaderSchemaResult = require(path.join(TEST_DATA_LOC, "loader-schema-result.json"));
 
 describe('lib/loader', () => {
-  
-  it('loadPlugin()', async () => {
-    //const loadedPlugin =  await loader.loadPlugin(testStructure, testSpec);
-    //console.log('loadedPlugin', loadedPlugin);
-  });
 
   it('loadPlugins()', async () => {
-    const loadedPlugins =  await loader.loadPlugins(TEST_DATA_LOC);
-    //console.log('loadedPlugin', loadedPlugin);
+    const memoryObject = {};
+    await loader.loadPlugins(TEST_DATA_LOC, memoryObject, 'deps');
+    expect(memoryObject).to.deep.equal({
+      "deps": {
+        "structureExample": {
+          "YY": {
+            "fileYY1": {},
+            "fileYY3": {},
+            "fileYY2": {}
+          },
+          "XX": {
+            "fileXX2": {},
+            "fileXX3": {},
+            "fileXX1": {}
+          },
+          "MM": {
+            "fileMM1": {},
+            "fileMM2": {},
+            "fileMM3": {}
+          },
+          "OO": {
+            "test": "test"
+          }
+        }
+      }
+    });
   });
 
 });
