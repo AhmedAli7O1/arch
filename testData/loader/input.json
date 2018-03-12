@@ -1,0 +1,79 @@
+{
+  "onDisk": [
+    {
+      "name": "MM",
+      "type": "component",
+      "modules": [
+        {
+          "name": "fileMM1.js"
+        },
+        {
+          "name": "fileMM2.js"
+        },
+        {
+          "name": "fileMM3.js"
+        }
+      ]
+    },
+    {
+      "name": "XX",
+      "type": "component",
+      "modules": [
+        {
+          "name": "fileXX1.js"
+        },
+        {
+          "name": "fileXX2.js"
+        },
+        {
+          "name": "fileXX3.js"
+        }
+      ]
+    },
+    {
+      "name": "YY",
+      "type": "component",
+      "modules": [
+        {
+          "name": "fileYY1.js"
+        },
+        {
+          "name": "fileYY2.js"
+        },
+        {
+          "name": "fileYY3.js"
+        }
+      ]
+    },
+    {
+      "name": "OO.json",
+      "type": "module"
+    }
+  ],
+  "spec": [
+    {
+      "name": "YY",
+      "type": "component",
+      "modules": [
+        {
+          "name": "fileYY1.js"
+        },
+        {
+          "name": "fileYY3.js"
+        }
+      ]
+    },
+    {
+      "name": "XX",
+      "type": "component",
+      "modules": [
+        {
+          "name": "fileXX2.js"
+        },
+        {
+          "name": "fileXX3.js"
+        }
+      ]
+    }
+  ]
+}

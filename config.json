@@ -1,0 +1,10 @@
+{
+  "paths": {
+    "plugins": "${app}/api",
+    "plugin": "${app}/api/${plugin}",
+    "pluginSpecs": "${app}/api/${plugin}/specification.js"
+  },
+  "loaderExclude": [
+    "specification.json"
+  ]
+}
