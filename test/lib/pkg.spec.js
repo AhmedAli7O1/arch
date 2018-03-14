@@ -38,6 +38,26 @@ describe('lib/pkg', () => {
 
     });
 
+    it('resolve version numbers to a full form', async () => {
+      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
+      expect(pkgManager._test.resolveVersion('1.1.5')).to.equal('1.1.5');
+    });
+
+    it('resolve major and minor version numbers to a full form', async () => {
+      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
+      expect(pkgManager._test.resolveVersion('1.1')).to.equal('1.1.0');
+    });
+
+    it('resolve major version numbers to a full form', async () => {
+      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
+      expect(pkgManager._test.resolveVersion('1')).to.equal('1.0.0');
+    });
+
+    it('should throw error when resolving the version number', async () => {
+      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
+      expect(() => pkgManager._test.resolveVersion('1.0.0.0')).to.throw(Error);
+    });
+
     after(async () => {
       await fse.remove(temp);
     });

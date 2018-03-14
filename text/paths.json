@@ -3,6 +3,6 @@
     "api": "api",
     "specification": "specification",
     "arch": "arch.json",
-    "extensions": "node_modules",
+    "extensions": "extensions",
     "bootstrap": "bootstrap.js"
   }

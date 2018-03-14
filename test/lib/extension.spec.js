@@ -54,7 +54,7 @@ describe('lib/extension', () => {
   });
 
   it('should load extensions', async () => {
-    const extensions = await extension.loadExtensions(temp, ['extOne', 'extTwo']);
+    const extensions = await extension.loadExtensions(temp);
     expect(_.get(extensions, 'before')).to.lengthOf(2);
   });
 
