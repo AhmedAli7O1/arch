@@ -1,3 +1,4 @@
 {
-  "cliName": "[ NodeArch ]"
+  "cliName": "[ NodeArch ]",
+  "packagesBaseURL": "https://raw.githubusercontent.com/nodearch/" 
 }

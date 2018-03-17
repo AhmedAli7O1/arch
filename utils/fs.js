@@ -18,6 +18,7 @@ Fs.prototype.dirContent = dirContent;
 Fs.prototype.resolvePaths = resolvePaths;
 Fs.prototype.canRead = canRead;
 Fs.prototype.fileName = fileName;
+Fs.prototype.searchUp = searchUp;
 
 /**
  * takes a file paths array and format it
@@ -172,5 +173,42 @@ async function canRead (location) {
 function fileName (filePath) {
   return path.basename(filePath, path.extname(filePath));
 }
+
+
+/**
+ * search directories with the given criteria,
+ * starting from the current process directory,
+ * and up until it reach the root directory.
+ * @param criteriaFn function that takes one argument,
+ * containing a folder directory, to match with.
+ * @returns {null|String} directory path or null if not found.
+ */
+function searchUp (criteriaFn) {
+
+  // get current directory.
+  let searchDir = process.cwd();
+  let foundDir = null;
+  let isSearch = true;
+
+  while (isSearch) {
+    const result = criteriaFn(searchDir);
+    const parentDir = path.join(searchDir, '..');
+    if (!result && parentDir !== searchDir) {
+      searchDir = parentDir;
+    }
+    else if (!result && parentDir === searchDir) {
+      // app directory not found.
+      isSearch = false;
+    }
+    else {
+      // app directory found.
+      foundDir = searchDir;
+      isSearch = false;
+    }
+  }
+
+  return foundDir;
+
+};
 
 module.exports = new Fs();

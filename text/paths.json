@@ -4,5 +4,6 @@
     "specification": "specification",
     "arch": "arch.json",
     "extensions": "extensions",
+    "pkgTemp": "pkgtemp",
     "bootstrap": "bootstrap.js"
   }
