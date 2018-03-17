@@ -38,6 +38,16 @@
           "path": "https://github.com/nodearch/mocha/archive/1.0.1.zip"
         }
       ]
+    },
+    {
+      "name": "mongoose",
+      "tags": [
+        {
+          "version": "1.0.0",
+          "latest": true,
+          "path": "https://github.com/nodearch/mongoose/archive/1.0.0.zip"
+        }
+      ]
     }
   ]
 }
