@@ -1,6 +1,6 @@
 'use strict';
 
-const pkg = require('../../lib/pkg');
+const pkgManager = require('../../lib/pkg');
 const { expect } = require("chai");
 const path = require('path');
 const fse = require('fs-extra');
@@ -39,23 +39,19 @@ describe('lib/pkg', () => {
     });
 
     it('resolve version numbers to a full form', async () => {
-      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
-      expect(pkgManager._test.resolveVersion('1.1.5')).to.equal('1.1.5');
+      expect(pkgManager.resolveVersion('1.1.5')).to.equal('1.1.5');
     });
 
     it('resolve major and minor version numbers to a full form', async () => {
-      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
-      expect(pkgManager._test.resolveVersion('1.1')).to.equal('1.1.0');
+      expect(pkgManager.resolveVersion('1.1')).to.equal('1.1.0');
     });
 
     it('resolve major version numbers to a full form', async () => {
-      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
-      expect(pkgManager._test.resolveVersion('1')).to.equal('1.0.0');
+      expect(pkgManager.resolveVersion('1')).to.equal('1.0.0');
     });
 
     it('should throw error when resolving the version number', async () => {
-      const pkgManager = pkg('https://raw.githubusercontent.com/nodearch/');
-      expect(() => pkgManager._test.resolveVersion('1.0.0.0')).to.throw(Error);
+      expect(() => pkgManager.resolveVersion('1.0.0.0')).to.throw(Error);
     });
 
     after(async () => {
