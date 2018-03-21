@@ -77,6 +77,15 @@ async function resolveTags (requestedPkgs) {
   return requestedPkgs || [];
 }
 
+async function remove (requestedPkgs) {
+
+  for (const requestedPkg of requestedPkgs) {
+    nodearch.log.info(`removing package ${requestedPkg}...`);
+    await packageManager.remove(nodearch.paths.extensions, requestedPkg);
+  }
+
+}
+
 async function install(requestedPkgs = []) {
 
   nodearch.log.info(`fetching packages info...`);
@@ -92,61 +101,6 @@ async function install(requestedPkgs = []) {
 
   }
 
-  return;
-
-  for (const pk of requestedPkgs) {
-    const parts = pk.split('@');
-
-    const pkgName = parts[0];
-    let pkgVersion = parts[1];
-
-    nodearch.log.info(`fetching package ${pkgName} info...`);
-
-    let pkgInfo;
-
-    try {
-      pkgInfo = await packageManager.fetchInfo(pkgName);
-    }
-    catch (e) {
-      throw new Error(`cannot resolve package ${pkgName}`);
-    }
-
-    // TODO: handle pkage not found
-
-    nodearch.log.info(
-      `
-        Name: ${pkgInfo.name}
-        Latest Version: ${pkgInfo.version}
-        Description: ${pkgInfo.description || 'N/A'}
-        `
-    );
-
-    const pkgVersions = _.get(pkgInfo, 'nodearch.versions');
-
-
-
-    if (!pkgVersion && !_.isEmpty(pkgVersions)) {
-
-      const answers = await inquirer.prompt([{
-        type: 'list',
-        name: 'version',
-        message: `choose version of ${pkgName}`,
-        pageSize: 5,
-        choices: _.map(pkgVersions, 'num')
-      }]);
-
-      pkgVersion = answers.version;
-
-    }
-    else if (!pkgVersion && _.isEmpty(pkgVersions)) {
-      nodearch.log.error('this package doesn\'t contains versions information, therefore, you should specify the version number!');
-    }
-
-    if (pkgVersion) {
-      await packageManager.install({ pkgName, version: pkgVersion, saveLocation: nodearch.paths.extensions });
-    }
-
-  }
 }
 
 module.exports = function (nodearchObj) {
@@ -154,7 +108,8 @@ module.exports = function (nodearchObj) {
   nodearch = nodearchObj;
 
   return {
-    install
+    install,
+    remove
   };
 
 };

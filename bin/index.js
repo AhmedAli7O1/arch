@@ -13,7 +13,8 @@ cli.parse(
     work: [false, 'What kind of work to do', 'string', 'sleep']   //     --work STRING What kind of work to do 
   },
   {
-    install: 'install nodearch extension'
+    install: 'install nodearch extension',
+    remove: 'remove nodearch extension',
   }
 );
 
@@ -28,6 +29,9 @@ async function exec() {
   switch (cli.command) {
     case 'install':
       await pkg.install(cli.args);
+      break;
+    case 'remove':
+      await pkg.remove(cli.args);
       break;
   }
 
