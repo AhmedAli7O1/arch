@@ -12,7 +12,7 @@ chai.use(chaiAsPromised);
 const TEST_DATA_LOC = path.resolve(__dirname, '..', '..', 'testData', 'structure');
 
 const testStructure = path.join(TEST_DATA_LOC, "structureExample");
-const testSpec = path.join(TEST_DATA_LOC, "specification.json");
+const testSpec = path.join(TEST_DATA_LOC, "spec.json");
 
 describe('lib/loader', () => {
 
@@ -47,7 +47,7 @@ describe('lib/loader', () => {
   before(async () => {
     const promiseArray = [];
     _.forEach(data, (x) => promiseArray.push(fse.ensureFile(x)));
-    promiseArray.push(fse.outputFile(`${temp}/pluginOne/specification.json`, JSON.stringify(userSpec)));
+    promiseArray.push(fse.outputFile(`${temp}/pluginOne/spec.json`, JSON.stringify(userSpec)));
     await Promise.all(promiseArray);
   });
 

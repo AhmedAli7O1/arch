@@ -10,9 +10,9 @@ describe('lib/paths', () => {
       const pathsConfig = {
         plugins: "${app}/api",
         plugin: "${app}/api/${plugin}",
-        pluginSpecs: "${app}/api/${plugin}/specification.js",
+        pluginSpecs: "${app}/api/${plugin}/spec.js",
         see: {
-          test: "${app}/api/${plugin}/specification.js"
+          test: "${app}/api/${plugin}/spec.js"
         }
       };
 
@@ -22,7 +22,7 @@ describe('lib/paths', () => {
       const two = getPath('see.test', { app: 'rr', plugin: 'see' });
 
       expect(one).to.equal('rr/api');
-      expect(two).to.equal('rr/api/see/specification.js');
+      expect(two).to.equal('rr/api/see/spec.js');
 
     });
   });

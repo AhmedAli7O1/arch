@@ -1,8 +1,8 @@
 {
     "config": "config",
     "api": "api",
-    "specification": "specification",
-    "arch": "arch.json",
+    "spec": "spec.json",
+    "arch": "nodearch.json",
     "extensions": "extensions",
     "pkgTemp": "pkgtemp",
     "bootstrap": "bootstrap.js"

@@ -1,12 +1,6 @@
 {
   "cliName": "[ NodeArch ]",
-  "paths": {
-    "plugins": "${app}/api",
-    "plugin": "${app}/api/${plugin}",
-    "pluginSpecs": "${app}/api/${plugin}/specification.js",
-    "envConfig": "config"
-  },
   "loaderExclude": [
-    "specification.json"
+    "spec.json"
   ]
 }

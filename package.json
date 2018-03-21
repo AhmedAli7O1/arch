@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha ./test/**/*.js"
   },
+  "bin": {
+    "nodearch": "./bin/index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

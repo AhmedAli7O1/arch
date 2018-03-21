@@ -62,15 +62,15 @@ describe("lib/specification", () => {
     });
   });
 
-  describe("#mergeSpec()", () => {
+  describe("#mergeComponentsSpec()", () => {
     it("should merge onDisk and specified Schema", () => {
-      const result = specification.mergeSpec(inputData.spec, inputData.onDisk);
+      const result = specification.mergeComponentsSpec(inputData.spec, inputData.onDisk);
 
       expect(result).to.deep.equal(resultData);
     });
   });
 
-  describe('#validateSchema()', () => {
+  describe('#validateComponentsSpec()', () => {
 
     const userSchema = [
       {
@@ -90,7 +90,7 @@ describe("lib/specification", () => {
     ];
 
     it('should return true for valid schema', () => {
-      expect(specification.validateSchema(userSchema)).to.equal(true);
+      expect(specification.validateComponentsSpec(userSchema)).to.equal(true);
     });
   });
 });
