@@ -96,8 +96,17 @@ async function install(requestedPkgs = []) {
 
   for (const requestedPkg of requestedPkgs) {
 
-    nodearch.log.info(`installing package ${requestedPkg.name}...`);
-    await packageManager.install(requestedPkg, nodearch.paths.extensions, nodearch.paths.pkgTemp);
+    nodearch.log.info(`downloading package ${requestedPkg.name}...`);
+    const data = await packageManager.download({ 
+      pkgName: requestedPkg.name, 
+      version: requestedPkg.requestedTag,
+      filter: file => file.path.match('index.js') || file.path.match('package.json'),
+      strip: 1  
+    });
+
+    await packageManager.save(data, [{ path: 'index.js', newPath: requestedPkg.name + '.js' }], nodearch.paths.extensions);
+
+    await packageManager.installDeps(data, nodearch.paths.app);
 
   }
 
