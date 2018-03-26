@@ -1,6 +1,3 @@
-
-
-# Node Arch
 <a href="http://nodearch.io/"><img src="resources/logo.png" alt="NodeArch Logo" width="300"/></a>
 
 
