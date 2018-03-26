@@ -1,6 +1,6 @@
 <a href="http://nodearch.io/"><img src="resources/logo.png" alt="NodeArch Logo" width="300"/></a>
 
-[![npm](https://img.shields.io/npm/v/nodearch.svg]()
+![npm](https://img.shields.io/npm/v/nodearch.svg)
 
 ![NodeArch Flow](resources/node-arch-flow.jpg)
 
