@@ -2,6 +2,8 @@
 
 ![npm](https://img.shields.io/npm/v/nodearch.svg)
 
+<hr><br>
+
 ![NodeArch Flow](resources/node-arch-flow.jpg)
 
 
