@@ -54,7 +54,7 @@ describe('lib/extension', () => {
   });
 
   it('should load extensions', async () => {
-    const extensions = await extension.loadExtensions(temp);
+    const extensions = await extension.loadExtensions(temp, ["extOne", "extTwo"]);
     expect(_.get(extensions, 'before')).to.lengthOf(2);
   });
 
@@ -73,7 +73,7 @@ describe('lib/extension', () => {
       sandbox.restore();
     });
 
-    it('should execute extensions events', async () => {
+    it('should execute before extension event', async () => {
       await extension.exec('before');
 
       sinon.assert.callCount(testUtils.outputTestBefore, 2);
@@ -84,6 +84,21 @@ describe('lib/extension', () => {
       sinon.assert.calledWith(
         testUtils.outputTestBefore,
         'hello from before in extension two'
+      );
+
+    });
+
+    it('should execute after extension event', async () => {
+      await extension.exec('after');
+
+      sinon.assert.callCount(testUtils.outputTestAfter, 2);
+      sinon.assert.calledWith(
+        testUtils.outputTestAfter,
+        'hello from after in extension one'
+      );
+      sinon.assert.calledWith(
+        testUtils.outputTestAfter,
+        'hello from after in extension two'
       );
 
     });
