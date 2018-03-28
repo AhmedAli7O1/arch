@@ -36,7 +36,7 @@
 
 - It should contain folders based on the node environment.
 
-       example: if ``` node_env = "develpoment" ```, then the configuration folder should contain a  `development` folder.
+​       example: if ``` node_env = "develpoment" ```, then the configuration folder should contain a  `development` folder.
 
 - Files that are not in any environment folder are loaded by default in all environments.
 - Files inside the environment folders override the default ones.
@@ -47,17 +47,30 @@
 ### Extensions
 
 - Extensions act as a middle-ware to be able to use different modules within any project.
+
 - For example you can use **Mongo** or **MySql**, you can use for testing **Mocha** or **Lab**.
-- You can find some or our pre-defined extensions [here](htttps://google.com.eg)
-- Extensions should expose one (or more) of the three functions **Before**, **Component**, **After** where each function takes the [configuration](#configuration) as parameters.
+
+- You can find some or our pre-defined extensions [here](https://github.com/nodearch).
+
+- You can use our [CLI Tool](#extensions-generators) to directly install the extensions.
+
+- Extensions should expose one (or more) of the three functions **Before**, **Component**, **After**.
+
   - **Before:** Executed before the framework tries to load any of the files of the project (except for the configuration).
-  - **Component:** Executed after each sing file while being loaded.
+
+  - **Component:** Executed after the loading of each single file.
+
+    **N.B.** The component function takes 2 arguments **Component** & **Component Name**.
+
+    **Component** is all files found in a certain directory (e.g. services, models, ...).
+
+    **Component Name** is the folder name.
+
   - **After:** Executed after all the project files are loaded.
 
 Example for a **before** function to use mongoose to initialize database connection.
 
 ```javascript
-
 'use strict';
 
 const _ = require('lodash');
@@ -105,15 +118,15 @@ module.exports = {
 
 - Inside the api folder there will be plugins, where each plugin is a folder.
 
-- Each plugin can be structured as the user want. If you use our [generator](htttps://google.com.eg) you can create the folders directly.
+- Each plugin can be structured as the user want.
 
-- **specification.json**
+- **spec.json**
 
   - It specifies the order of loading of files.
 
-  - It's used to determine the order of loading of plugins or the order of loading of each item inside each plugin (depending on the directory it's found in).
+  - It's used to determine the order of loading of plugins or the order of loading of each item inside each plugin (depending on the directory it's found in). 
 
-  - Example for specification.json inside a plugin
+  - Example for spec.json inside a plugin
 
     ```json
     [
@@ -150,13 +163,13 @@ module.exports = {
 
     ```
 
-    Each JSON object is either a **module** (file) or a **component** (folder)
-
-    For each component, you can specify the order of loading of its **modules** (files) through the modules array.
+    - Each JSON object is either a **module** (file) or a **component** (folder)
+    - For each component, you can specify the order of loading of its **modules** (files) through the modules array.
+    - `disable` prevents loading of file/folder (useful in testing)
 
 - #### To access any file within the project
 
-    use the `deps` object on `nodearch` module.
+  use the `deps` object on `nodearch` module.
 
 - Example: If inside your api, we have `pluginOne`, `pluginTwo`, each plugin contains `services`.
 
@@ -166,22 +179,58 @@ module.exports = {
   var config = nodearch.config; //configuration based on node environment
   ```
 
-
-
 ------
 
 ### Index
 
-- Contains the start of the server library you use (hapi, express, ..etc).
+- Contains the start of the server framework you use (hapi, express, ..etc).
+
 - Example for start for **hapi:** 
 
+  ```javascript
+  'use strict';
 
+  const ERROR_CODE = 1;
+
+  const Hapi = require('hapi');
+  const NodeArch = require('nodearch');
+  const _ = require('lodash');
+  const hapiPlugins = require('./thirdParties');
+
+  async function serverHandler (arch) {
+    const server = Hapi.server(arch.config.connection);
+
+    const routes = _.flatten(_.map(arch.deps, plugin => plugin.routes));
+
+    server.route(routes);
+
+    process.on('unhandledRejection', (err) => {
+      console.log(err);
+      process.exit(1);
+    });
+
+    await server.register(hapiPlugins);
+
+    await server.start();
+    arch.log.info(`Server running at: ${server.info.uri}`);
+    return server;
+    
+  } 
+
+  NodeArch.start(serverHandler);
+  ```
+
+  ​
 
 ------
 
 ### nodearch.json
 
 - Contains the extensions for your project
+
+- Only the extensions written will be loaded
+
+- The extensions will be loaded in the same order as they are written
 
   ```json
   {
@@ -202,6 +251,66 @@ module.exports = {
   - Each function takes arguments initialized in the pipeline
   - The pipeline returns the result of the last function in the pipeline.
 
+------
+
+## CLI Tool
+
+Install Node Arch globally
+
+```shell
+npm install -g nodearch
+```
+
+
+
+#### Extensions Generators
+
+```shell
+nodearch install
+```
+
+- This will list all extensions available on our [repository](https://github.com/nodearch) 
+- Select the available extensions then the tool will list the version for each extension found.
+- Select the version for each extension and the extensions will be installed by default to the `extensions` folder.
+- If (for each extension) dependencies are found, the tool will only install the node modules that are not already installed. It'll also list if any dependencies conflict
+
+		**Ex.** If the extension requires lodash V3 while you have V4, it will **NOT** install lodash, however it'll display a warning that there are conflicts in this module and list the versions.
+
+
+
+- Install certain extension directly without listing all available extensions
+
+  ```shell
+  nodarch install mocha
+  ```
+
+
+
+- Repeat as many extensions as you want
+
+  ```shell
+  nodearch install mocha mngoose
+  ```
+
+
+
+- You can also specify the versions for the extensions.
+
+  ```shell
+  nodearch install mongoose@1.0.2
+  ```
+
+  If the version does not exist it'll display a warning and ask you to choose an existing version.
+
+
+
+- You can specify the versions for some extensions only
+
+  ```shell
+  nodearch install mongoose@1.0.2 mocha
+  ```
+
+  In this case, the tool will ask only about **mocha** version while installing mongoose version 1.0.2 directly
 
 <hr>
 <br>
