@@ -1,0 +1,15 @@
+[ 
+  "${temp}/pluginOne/routes.js",
+  "${temp}/pluginOne/services/TestService.js",
+  "${temp}/pluginOne/controllers/TestController.js",
+  "${temp}/pluginOne/controllers/TestTwoController.js",
+  "${temp}/pluginOne/models/TestModel.js",
+  "${temp}/pluginOne/services/Test2Service.js",
+
+  "${temp}/pluginTwo/routes.js",
+  "${temp}/pluginTwo/services/TestService.js",
+  "${temp}/pluginTwo/controllers/TestController.js",
+  "${temp}/pluginTwo/models/TestModel.js",
+  "${temp}/pluginTwo/controllers/Test2Controller.js",
+  "${temp}/pluginTwo/services/Test2Service.js" 
+]

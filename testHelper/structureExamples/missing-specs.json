@@ -1,0 +1,10 @@
+[
+  {
+    "file": "${temp}/pluginOne/spec.json",
+    "content": "[{\"name\": \"controllers\",\"type\": \"component\"}, {\"name\": \"notHere\",\"type\": \"component\"}]"
+  },
+  {
+    "file": "${temp}/spec.json",
+    "content": "[{ \"name\": \"pluginOne\" },{ \"name\": \"pluginTwo\" }, { \"name\": \"notHere\" }]"
+  }
+]

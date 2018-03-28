@@ -10,9 +10,9 @@ const pkg = require('./pkg')(nodearch);
 
 cli.parse(
   {
-    file: ['f', 'A file to process', 'file', 'asdasd'],           // -f, --file FILE   A file to process 
-    time: ['t', 'An access time', 'time', false],                 // -t, --time TIME   An access time 
-    work: [false, 'What kind of work to do', 'string', 'sleep']   //     --work STRING What kind of work to do 
+    // file: ['f', 'A file to process', 'file', 'asdasd'],           // -f, --file FILE   A file to process 
+    // time: ['t', 'An access time', 'time', false],                 // -t, --time TIME   An access time 
+    // work: [false, 'What kind of work to do', 'string', 'sleep']   //     --work STRING What kind of work to do 
   },
   {
     install: 'install nodearch extension',
