@@ -283,4 +283,7 @@ describe('lib/structure', () => {
 
   });
 
+  describe('getComponentsLoaderSchema()', () => {});
+  describe('getPluginsLoaderSchema()', () => {});
+
 });
