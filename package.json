@@ -11,7 +11,7 @@
   "bin": {
     "nodearch": "./bin/index.js"
   },
-  "keywords": [],
+  "keywords": ["node_server"],
   "author": "",
   "license": "ISC",
   "dependencies": {
