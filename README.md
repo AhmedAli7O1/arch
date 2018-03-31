@@ -11,7 +11,7 @@
 ## Components
 - [Introduction](#introduction)
 - [Differences](#differences)
-- [How it Works](#how_it_works)
+- [How it Works](#how-it-works)
 - [Configuration](#configuration)
 - [Extensions](#extensions)
   - Before
