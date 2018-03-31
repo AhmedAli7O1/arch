@@ -7,35 +7,53 @@
 
 <hr><br>
 
+
+## Components
+- [Introduction](#introduction)
+- [Differences](#differences)
+- [How it Works](#how_it_works)
+- [Configuration](#configuration)
+- [Extensions](#extensions)
+  - Before
+  - Component
+  - After
+- [Main Project](#main-project)
+  - Plugins
+  - Specification
+- [index.js](#index)
+- [nodearch.json](#nodearch.json)
+- [Other Features](#other-features)
+
+  ------
+  
+ 
+## Introduction: 
+  
+nodearch is a set of libraries, that help you not just getting up and running fast, but also helping to manage your application structure, environment specific configurations, prebuilt set of extensions to help you using tools and third parties out of the box, and you gotta break down your business irrelevant logic into your own defined extensions that register themselves on nodearch load flow, and of course break down your business logic code into separate plugins, and each plugin consist of a collection of components.
+
+-----
+
+## Differences:
+
+* express, hapi, koa...etc  
+  those are node.js frameworks, designed to create a node web server/application, on the other side nodearch is architecture/structure manager and server organizer, that works with any of the mentioned frameworks to organize the environment for the developer. so it doesn't by any mean replace or cover the node webserver framework.
+
+* sails.js, hapiarch  
+sails.js is a layer on top of express, hapi-arch is the first version of the arch framework and it's also a layer on top  of hapi.js, both frameworks does cover the underlying node server framework (express/hapi) and exposes their own APIs to help organize and structure the code, and provide some functionalities out of the box.  
+on the other side, nodearch is not bound to any node server framework, and does not cover any of their APIs, it does lay  in the same level as your node server framework (express/hapi/koa...etc) to provide it's own functionalites e.g (extensions, environment configs, plugins...etc) leaving you with a full control over your node server framework. it's not even aware of your framework and that's to achieve a full decoupled management tool for your project.
+
+-----
+
+## How it Works
+
 <div width="100%" align="center">
 
 ![NodeArch Flow](https://raw.githubusercontent.com/nodearch/arch/master/resources/nodearch-flow.png)
 
 </div>
 
-
-## Components
-
-- [Configuration](#configuration)
-
-- [Extensions](#extensions)
-
-  - Before
-  - Component
-  - After
-
-- [Main Project](#main-project)
-
-  - Plugins
-  - Specification
-
-- [index.js](#index)
-
-- [nodearch.json](#nodearch.json)
-
-- [Other Features](#other-features)
-
-  ------
+-----
+  
 
 ### Configuration
 
