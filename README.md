@@ -8,23 +8,18 @@
 <hr><br>
 
 
-## Components
-- [Introduction](#introduction)
-- [Differences](#differences)
-- [How it Works](#how-it-works)
-- [Configuration](#configuration)
-- [Extensions](#extensions)
-  - Before
-  - Component
-  - After
-- [Main Project](#main-project)
-  - Plugins
-  - Specification
-- [index.js](#index)
-- [nodearch.json](#nodearch.json)
-- [Other Features](#other-features)
+## Content
+  * [Introduction](#introduction)
+  * [Differences](#differences)
+  * [How it Works](#how-it-works)
+  * [Configuration](#configuration)
+  * [Extensions](#extensions)
+  * [Main Project](#main-project)
+  * [index.js](#index)
+  * [nodearch.json](#nodearch.json)
+  * [Other Features](#other-features)
 
-  ------
+------
   
  
 ## Introduction: 
@@ -36,15 +31,48 @@ nodearch is a set of libraries, that help you not just getting up and running fa
 ## Differences:
 
 * express, hapi, koa...etc  
-  those are node.js frameworks, designed to create a node web server/application, on the other side nodearch is architecture/structure manager and server organizer, that works with any of the mentioned frameworks to organize the environment for the developer. so it doesn't by any mean replace or cover the node webserver framework.
+  
+  those are node.js frameworks, designed to create a node web server/application, on the other side nodearch is architecture/structure manager and server organizer, that works with any of the mentioned frameworks to organize the environment for the developer. 
+  
+  so it doesn't by any mean replace or cover the node webserver framework.
 
 * sails.js, hapiarch  
-sails.js is a layer on top of express, hapi-arch is the first version of the arch framework and it's also a layer on top  of hapi.js, both frameworks does cover the underlying node server framework (express/hapi) and exposes their own APIs to help organize and structure the code, and provide some functionalities out of the box.  
-on the other side, nodearch is not bound to any node server framework, and does not cover any of their APIs, it does lay  in the same level as your node server framework (express/hapi/koa...etc) to provide it's own functionalites e.g (extensions, environment configs, plugins...etc) leaving you with a full control over your node server framework. it's not even aware of your framework and that's to achieve a full decoupled management tool for your project.
+  
+  sails.js is a layer on top of express, hapi-arch is the first version of the arch framework and it's also a layer on top  of hapi.js, both frameworks does cover the underlying node server framework (express/hapi) and exposes their own APIs to help organize and structure the code, and provide some functionalities out of the box.  
+  
+  on the other side, nodearch is not bound to any node server framework, and does not cover any of their APIs, it does lay  in the same level as your node server framework (express/hapi/koa...etc) to provide it's own functionalites e.g (extensions, environment configs, plugins...etc) leaving you with a full control over your node server framework. it's not even aware of your framework and that's to achieve a full decoupled management tool for your project.
 
 -----
 
 ## How it Works
+
+
+### what is what?
+
+  * Plugins  
+    pluggable user code, let's assume every feature in the app could be a plugin itself, for the seek of separation and reusability.
+
+  * Extensions  
+    modules that contain some code which is not related directly to the app business logic e.g ( connect to mongoose, integrate with mocha for testing...etc )also extensions could be a user defined modules or predefined nodearch extensions that you can directly install, using the nodearch CLI tool.
+
+  * Env Config  
+    environment configurations are the way that you define your app configurations for each environment. 
+  
+  * Server Handler  
+    it's where the user put his code to start the web server using his favorite framework, i.e express, hapi, koa...etc
+
+### the flow
+
+- nodearch start loading and initiating its defaults.
+- loading user environment specific configurations, according to what the `NODE_ENV` set.
+- load extensions from disk.
+- execute `before` event from all loaded extensions.
+- start loading plugins one by one.
+- execute component events from all extensions on each loaded component on each loaded plugin.
+- start the user Server Handler.
+- execute `after` event from all loaded extensions.
+
+the image below describes it as well:
 
 <div width="100%" align="center">
 
