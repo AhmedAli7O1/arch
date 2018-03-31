@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/**/*.js"
+    "test": "mocha ./test/**/*.js",
+    "test-coverage": "nyc mocha ./test/**/*.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "bin": {
     "nodearch": "./bin/index.js"
@@ -29,7 +31,9 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
     "mocha": "^4.1.0",
+    "nyc": "^11.6.0",
     "sinon": "^4.4.4"
   }
 }
