@@ -16,6 +16,7 @@ describe('lib/structure', () => {
   const basicStructure = exampleLoader('basic-structure', { temp });
   const basicDirectories = exampleLoader('basic-directories', { temp });
   const basicSpecs = exampleLoader('basic-specs', { temp });
+  const orderdSpecs = exampleLoader('orderd-specs', { temp });
   const missingSpecs = exampleLoader('missing-specs', { temp });
 
   after(async () => {
@@ -166,7 +167,7 @@ describe('lib/structure', () => {
 
       await Promise.map(basicStructure, x => fs.ensureFile(x));
       await Promise.map(basicDirectories, x => fs.ensureDir(x));
-      await Promise.map(basicSpecs, x => fs.outputFile(x.file, x.content));
+      await Promise.map(basicSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
 
       const result = await structure.getStructureInfo(path.resolve(temp, 'pluginOne'), basicSpecs[0].file, structure.getComponentsOnDisk);
       expect(result).to.deep.equal({
@@ -223,7 +224,7 @@ describe('lib/structure', () => {
 
       await Promise.map(basicStructure, x => fs.ensureFile(x));
       await Promise.map(basicDirectories, x => fs.ensureDir(x));
-      await Promise.map(missingSpecs, x => fs.outputFile(x.file, x.content));
+      await Promise.map(missingSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
 
       const result = await structure.getStructureInfo(path.resolve(temp, 'pluginOne'), missingSpecs[0].file, structure.getComponentsOnDisk);
 
@@ -283,7 +284,80 @@ describe('lib/structure', () => {
 
   });
 
-  describe('getComponentsLoaderSchema()', () => {});
-  describe('getPluginsLoaderSchema()', () => {});
+  describe('getComponentsLoaderSchema()', () => {
+
+    before(async () => {
+      await Promise.map(basicStructure, x => fs.ensureFile(x));
+      await Promise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+    });
+
+    after(async () => {
+      await fs.remove(temp);
+    });
+
+    it('should load components schema', async () => {
+      const result = await structure.getComponentsLoaderSchema(path.resolve(temp, 'pluginOne'), path.resolve(temp, 'pluginOne', 'spec.json'));
+      expect(result).to.deep.equal({
+        mergedSpecs: [
+          {
+            name: "models",
+            type: "component",
+            modules: [
+              { name: "TestModel.js" }
+            ] 
+          },
+          {
+            name: "services",
+            type: "component",
+            modules: [
+              { name: "Test2Service.js" },
+              { name: "TestService.js" }
+            ]
+          },
+          { 
+            name: "controllers", 
+            type: "component", 
+            modules: [
+              { name: "TestTwoController.js" },
+              { name: "TestController.js" }
+            ] 
+          },
+          {
+            name: "routes.js",
+            type: "module",
+            modules: []
+          }
+        ],
+        notFound: []
+      });
+    });
+
+  });
+
+  describe('getPluginsLoaderSchema()', () => {
+
+    before(async () => {
+      await Promise.map(basicStructure, x => fs.ensureFile(x));
+      await Promise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+    });
+
+    after(async () => {
+      await fs.remove(temp);
+    });
+
+    it('should load plugins schema()', async () => {
+
+      const result = await structure.getPluginsLoaderSchema(temp, path.resolve(temp, 'spec.json'));
+      expect(result).to.deep.equal({
+        mergedSpecs: [
+          { name: "pluginTwo" },
+          { name: "pluginOne" }
+        ],
+        notFound: []
+      });
+
+    });
+
+  });
 
 });
