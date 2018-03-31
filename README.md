@@ -9,7 +9,7 @@
 
 <div width="100%" align="center">
 
-![NodeArch Flow](https://raw.githubusercontent.com/nodearch/arch/master/resources/node-arch-flow.jpg)
+![NodeArch Flow](https://raw.githubusercontent.com/nodearch/arch/master/resources/nodearch-flow.png)
 
 </div>
 
