@@ -87,7 +87,7 @@ the image below describes it as well:
 
 - It should contain folders based on the node environment.
 
-​       example: if ``` node_env = "develpoment" ```, then the configuration folder should contain a  `development` folder.
+​       example: if `NODE_ENV = "develpoment"`, then the configuration folder should contain a  `development` folder.
 
 - Files that are not in any environment folder are loaded by default in all environments.
 - Files inside the environment folders override the default ones.
