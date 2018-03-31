@@ -1,12 +1,17 @@
-<a href="http://nodearch.io/"><img src="resources/logo.png" alt="NodeArch Logo" width="300"/></a>
+<div width="100%" align="center">
+<a href="http://nodearch.io/"><img src="https://raw.githubusercontent.com/nodearch/arch/master/resources/logo.png" alt="NodeArch Logo" width="300"/></a>
+</div>
 
 ![build](https://travis-ci.org/nodearch/arch.svg?branch=master)
 ![npm](https://img.shields.io/npm/v/nodearch.svg)
 
 <hr><br>
 
-![NodeArch Flow](resources/node-arch-flow.jpg)
+<div width="100%" align="center">
 
+![NodeArch Flow](https://raw.githubusercontent.com/nodearch/arch/master/resources/node-arch-flow.jpg)
+
+</div>
 
 
 ## Components
