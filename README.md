@@ -1,9 +1,15 @@
 <div width="100%" align="center">
+
 <a href="http://nodearch.io/"><img src="https://raw.githubusercontent.com/nodearch/arch/master/resources/logo.png" alt="NodeArch Logo" width="300"/></a>
-</div>
+
+manage and generate a powerful fully organized and customizable node.js server of your choice  
+build, generate, edit, and share your project design and flow with your team  
+prebuilt extensions and tools to help you focus on your business idea
 
 ![build](https://travis-ci.org/nodearch/arch.svg?branch=master)
 ![npm](https://img.shields.io/npm/v/nodearch.svg)
+
+</div>
 
 <hr><br>
 
