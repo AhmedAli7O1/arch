@@ -181,15 +181,15 @@ function fileName (filePath) {
  * and up until it reach the root directory.
  * @param criteriaFn function that takes one argument,
  * containing a folder directory, to match with.
+ * @param startingDir optional starting directory to search from 
  * @returns {null|String} directory path or null if not found.
  */
-function searchUp (criteriaFn) {
+function searchUp (criteriaFn, startingDir) {
 
   // get current directory.
-  let searchDir = process.cwd();
+  let searchDir = startingDir || process.cwd();
   let foundDir = null;
   let isSearch = true;
-
   while (isSearch) {
     const result = criteriaFn(searchDir);
     const parentDir = path.join(searchDir, '..');

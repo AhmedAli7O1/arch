@@ -10,7 +10,8 @@
     "utils/**/*.js"
   ],
   "exclude": [
-    "test/**/*.js"
+    "test/**/*.js",
+    "utils/log.js"
   ],
   "cache": true,
   "all": true

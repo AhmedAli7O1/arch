@@ -1,0 +1,64 @@
+[
+  {
+    "file": "${temp}/nodearch.json",
+    "content": {
+      "extensions": [] 
+    }
+  },
+  {
+    "file": "${temp}/api/pluginOne/spec.json",
+    "content": []
+  },
+  {
+    "file": "${temp}/api/pluginOne/routes.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginOne/services/TestService.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginOne/controllers/TestController.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginOne/controllers/TestTwoController.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginOne/models/TestModel.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginOne/services/Test2Service.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginTwo/spec.json",
+    "content": []
+  },
+  {
+    "file": "${temp}/api/pluginTwo/routes.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginTwo/services/TestService.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginTwo/controllers/TestController.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginTwo/models/TestModel.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginTwo/controllers/Test2Controller.js",
+    "content": {}
+  },
+  {
+    "file": "${temp}/api/pluginTwo/services/Test2Service.js",
+    "content": {}
+  }
+]

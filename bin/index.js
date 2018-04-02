@@ -5,7 +5,7 @@
 const NodeArch = require('../lib/nodearch');
 const cli = require('cli');
 
-const nodearch = new NodeArch(true);
+const nodearch = new NodeArch({ cli: true });
 const pkg = require('./pkg')(nodearch);
 
 cli.parse(

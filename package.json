@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha ./test/**/*.js",
+    "test": "nyc mocha ./test/**/*.spec.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "bin": {
@@ -12,7 +12,7 @@
   },
   "keywords": ["node_server"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.1",
     "chai-as-promised": "^7.1.1",

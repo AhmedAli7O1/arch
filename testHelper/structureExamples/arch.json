@@ -1,0 +1,11 @@
+[
+  {
+    "file": "${temp}/arch.json",
+    "content": {
+      "extensions": [
+        "mocha",
+        "mongoose"
+      ]
+    }
+  }
+]
