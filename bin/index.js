@@ -5,8 +5,9 @@
 const NodeArch = require('../lib/nodearch');
 const cli = require('cli');
 
-const nodearch = new NodeArch({ cli: true });
+const nodearch = new NodeArch({ noLog: true });
 const pkg = require('./pkg')(nodearch);
+const example = require('./example')(nodearch);
 
 cli.parse(
   {
@@ -17,14 +18,14 @@ cli.parse(
   {
     install: 'install nodearch extension',
     remove: 'remove nodearch extension',
+    generate: 'generate a full and ready to try nodearch example'
   }
 );
 
 async function exec() {
-  const nodearch = new NodeArch(true);
 
   nodearch.log.info(`Node.js Server/Architecture Manager v${nodearch.pkgInfo.version}`);
-  nodearch.log.info(`Package Installer for NodeArch Extensions`);
+  nodearch.log.info(`NodeArch CLI`);
 
   await nodearch.init();
 
@@ -34,6 +35,9 @@ async function exec() {
       break;
     case 'remove':
       await pkg.remove(cli.args);
+      break;
+    case 'generate':
+      await example.generate(cli.args);
       break;
   }
 

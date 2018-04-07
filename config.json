@@ -6,5 +6,9 @@
   "extensionsManager": {
     "pkgsTreeURL": "https://raw.githubusercontent.com/nodearch/pkgs/master/extensions.json",
     "pkgDownloadURL": "https://github.com/nodearch/${pkgName}/archive/${version}.zip"
+  },
+  "examplesManager": {
+    "pkgsTreeURL": "https://raw.githubusercontent.com/nodearch/pkgs/master/examples.json",
+    "pkgDownloadURL": "https://github.com/nodearch/${pkgName}/archive/${version}.zip"
   }
 }
