@@ -18,6 +18,7 @@ prebuilt extensions and tools to help you focus on your business idea
   * [Introduction](#introduction)
   * [Differences](#differences)
   * [How it Works](#how-it-works)
+  * [Getting Started](#getting-started)
   * [Configuration](#configuration)
   * [Extensions](#extensions)
   * [Main Project](#main-project)
@@ -88,6 +89,43 @@ the image below describes it as well:
 
 -----
   
+
+## Getting Started
+let's start by installing the NodeArch CLI tool by
+```bash
+npm i -g nodearch
+``` 
+now it's simple as generating a full example project by
+```bash
+nodearch g
+```
+then choose your prefered nodejs framework, 
+press enter and the CLI tool will start preparing a new project for you, 
+by creating your folders structure, downloading the required modules to integrate your chosen framework, 
+and finally runs `npm install` for you, once all this done, 
+you can safely go to your new project folder and run `npm start` or `npm test`
+
+### Available Examples
+* hapi.js  
+    currently we have a full `hapi.js` server example, with MongoDB and auto-generated Swagger Documentations using Joi validations.  
+    
+    Requirements:
+    * running MongoDB local instance, or you'll have to disable the mongoose extenstion using `nodearch remove mongoose` and removing
+    it from the `nodearch.json` file too.   
+    
+    Features:
+    * auto generated [Swagger](https://github.com/glennjones/hapi-swagger) API documentations on http://localhost:3000/documentation
+    * [Joi](https://github.com/hapijs/joi) Validation
+    * MongoDB integration using [Mongoose](http://mongoosejs.com/)
+    * Testing integration and example using [Mocha](https://mochajs.org/)
+    * Controller -> Service -> Model Flow Example
+        * Model: contains Mongoose Schema
+        * Service: contains your business logic, separated as multiple services.
+        * Controller: to control the data flow, e.g a controller could aggregate on many services to respond on client requests for a specific endpoint.
+    * example for multiple plugins.
+
+  for more info about how to use the CLI tool, please read [Extensions Generators](#extensions-generators)
+-----
 
 ### Configuration
 
