@@ -75,7 +75,7 @@ async function generate (args) {
 
   const projectLocation = path.resolve(process.cwd(), exampleInfo.name);
   
-  nodearch.log.info(`downloading example for ${selectedExample.name}`);
+  nodearch.log.info(`downloading project content for your ${selectedExample.name} server`);
 
   await exampleManager.download({
     pkgName: selectedExample.path,
@@ -86,6 +86,12 @@ async function generate (args) {
   nodearch.log.info('running `npm install` for you, if something goes wrong try to run it yourself!');
 
   await exampleManager.installDeps(projectLocation);
+
+  nodearch.log.info(
+    `done, now you can run: 
+    cd ${exampleInfo.name} && npm start`
+  );
+  
 }
 
 module.exports = function (nodearchObj) {
