@@ -124,7 +124,7 @@ you can safely go to your new project folder and run `npm start` or `npm test`
         * Controller: to control the data flow, e.g a controller could aggregate on many services to respond on client requests for a specific endpoint.
     * example for multiple plugins.
 
-  for more info about how to use the CLI tool, please read [Extensions Generators](#extensions-generators)
+  for more info about how to use the CLI tool, please read [CLI Tool](#cli-tool)
 -----
 
 ### Configuration
