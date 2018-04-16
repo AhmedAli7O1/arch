@@ -21,6 +21,8 @@ prebuilt extensions and tools to help you focus on your business idea
   * [Getting Started](#getting-started)
   * [Configuration](#configuration)
   * [Extensions](#extensions)
+      * [Install Extensions](#install-extensions)
+      * [Available Extensions](#available-extensions)
   * [Main Project](#main-project)
   * [index.js](#index)
   * [nodearch.json](#nodearch.json)
@@ -207,6 +209,65 @@ module.exports = {
 
 ------
 
+### Install Extensions
+
+```shell
+nodearch install
+```
+
+- This will list all extensions available on our [repository](https://github.com/nodearch) 
+- Select the available extensions then the tool will list the version for each extension found.
+- Select the version for each extension and the extensions will be installed by default to the `extensions` folder.
+- If (for each extension) dependencies are found, the tool will only install the node modules that are not already installed. It'll also list if any dependencies conflict
+
+		**Ex.** If the extension requires lodash V3 while you have V4, it will **NOT** install lodash, however it'll display a warning that there are conflicts in this module and list the versions.
+
+
+
+- Install certain extension directly without listing all available extensions
+
+  ```shell
+  nodarch install mocha
+  ```
+
+
+
+- Repeat as many extensions as you want
+
+  ```shell
+  nodearch install mocha mngoose
+  ```
+
+
+
+- You can also specify the versions for the extensions.
+
+  ```shell
+  nodearch install mongoose@1.0.2
+  ```
+
+  If the version does not exist it'll display a warning and ask you to choose an existing version.
+
+
+
+- You can specify the versions for some extensions only
+
+  ```shell
+  nodearch install mongoose@1.0.2 mocha
+  ```
+
+  In this case, the tool will ask only about **mocha** version while installing mongoose version 1.0.2 directly
+
+------
+
+### Available Extensions
+
+* [mocha](https://github.com/nodearch/mocha) : JavaScript test framework
+* [mongoose](https://github.com/nodearch/mongoose) : MongoDB object modeling tool 
+* [memwatch](https://github.com/nodearch/memwatch) : Leak Detection and Heap Diffing
+
+------
+
 ### Main Project
 
 - Main project is structured inside the `api` folder.
@@ -356,56 +417,6 @@ Install Node Arch globally
 npm install -g nodearch
 ```
 
-
-
-#### Extensions Generators
-
-```shell
-nodearch install
-```
-
-- This will list all extensions available on our [repository](https://github.com/nodearch) 
-- Select the available extensions then the tool will list the version for each extension found.
-- Select the version for each extension and the extensions will be installed by default to the `extensions` folder.
-- If (for each extension) dependencies are found, the tool will only install the node modules that are not already installed. It'll also list if any dependencies conflict
-
-		**Ex.** If the extension requires lodash V3 while you have V4, it will **NOT** install lodash, however it'll display a warning that there are conflicts in this module and list the versions.
-
-
-
-- Install certain extension directly without listing all available extensions
-
-  ```shell
-  nodarch install mocha
-  ```
-
-
-
-- Repeat as many extensions as you want
-
-  ```shell
-  nodearch install mocha mngoose
-  ```
-
-
-
-- You can also specify the versions for the extensions.
-
-  ```shell
-  nodearch install mongoose@1.0.2
-  ```
-
-  If the version does not exist it'll display a warning and ask you to choose an existing version.
-
-
-
-- You can specify the versions for some extensions only
-
-  ```shell
-  nodearch install mongoose@1.0.2 mocha
-  ```
-
-  In this case, the tool will ask only about **mocha** version while installing mongoose version 1.0.2 directly
 
 <hr>
 <br>
