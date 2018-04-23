@@ -5,6 +5,8 @@ const arch = require('../../lib/arch');
 const exampleLoader = require('../../testHelper/exampleLoader');
 const path = require('path');
 const fs = require('fs-extra');
+const bluebirdPromise = require('bluebird').Promise;
+
 
 describe('lib/arch', () => {
 
@@ -12,7 +14,7 @@ describe('lib/arch', () => {
 
   before(async () => {
     const archFile = exampleLoader('arch', { temp });
-    await Promise.map(archFile, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+    await bluebirdPromise.map(archFile, x => fs.outputFile(x.file, JSON.stringify(x.content)));
   });
 
   after(async () => {

@@ -5,6 +5,7 @@ const path = require('path');
 const NodeArch = require('../../lib/nodearch');
 const exampleLoader = require('../../testHelper/exampleLoader');
 const { expect } = require('chai');
+const bluebirdPromise = require('bluebird').Promise;
 
 
 describe('lib/nodearch', () => {
@@ -14,8 +15,8 @@ describe('lib/nodearch', () => {
   const orderdSpecs = exampleLoader('orderd-specs', { temp });
 
   before(async () => {
-    await Promise.map(advStructure, x => fs.outputFile(x.file, JSON.stringify(x.content)));
-    await Promise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+    await bluebirdPromise.map(advStructure, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+    await bluebirdPromise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
   });
 
   after(async () => {

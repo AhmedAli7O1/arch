@@ -3,7 +3,7 @@
 const path = require('path');
 const { expect } = require('chai');
 const fs = require('fs-extra');
-Promise = require('bluebird').Promise;
+const bluebirdPromise = require('bluebird').Promise;
 const _ = require('lodash');
 const structure = require('../../lib/structure')._internals;
 const exampleLoader = require('../../testHelper/exampleLoader');
@@ -30,8 +30,8 @@ describe('lib/structure', () => {
   describe('loadComponent()', () => {
 
     before(async () => {
-      await Promise.map(basicStructure, x => fs.ensureFile(x));
-      await Promise.map(basicDirectories, x => fs.ensureDir(x));
+      await bluebirdPromise.map(basicStructure, x => fs.ensureFile(x));
+      await bluebirdPromise.map(basicDirectories, x => fs.ensureDir(x));
     });
 
     after(async () => {
@@ -66,8 +66,8 @@ describe('lib/structure', () => {
   describe('getPluginsOndisk()', () => {
 
     before(async () => {
-      await Promise.map(basicStructure, x => fs.ensureFile(x));
-      await Promise.map(basicDirectories, x => fs.ensureDir(x));
+      await bluebirdPromise.map(basicStructure, x => fs.ensureFile(x));
+      await bluebirdPromise.map(basicDirectories, x => fs.ensureDir(x));
     });
 
     after(async () => {
@@ -89,8 +89,8 @@ describe('lib/structure', () => {
   describe('getComponentsOnDisk()', () => {
 
     before(async () => {
-      await Promise.map(basicStructure, x => fs.ensureFile(x));
-      await Promise.map(basicDirectories, x => fs.ensureDir(x));
+      await bluebirdPromise.map(basicStructure, x => fs.ensureFile(x));
+      await bluebirdPromise.map(basicDirectories, x => fs.ensureDir(x));
     });
 
     after(async () => {
@@ -165,9 +165,9 @@ describe('lib/structure', () => {
 
     it('should get structure info for component', async () => {
 
-      await Promise.map(basicStructure, x => fs.ensureFile(x));
-      await Promise.map(basicDirectories, x => fs.ensureDir(x));
-      await Promise.map(basicSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+      await bluebirdPromise.map(basicStructure, x => fs.ensureFile(x));
+      await bluebirdPromise.map(basicDirectories, x => fs.ensureDir(x));
+      await bluebirdPromise.map(basicSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
 
       const result = await structure.getStructureInfo(path.resolve(temp, 'pluginOne'), basicSpecs[0].file, structure.getComponentsOnDisk);
       expect(result).to.deep.equal({
@@ -222,9 +222,9 @@ describe('lib/structure', () => {
 
     it('should a not found component on disk', async () => {
 
-      await Promise.map(basicStructure, x => fs.ensureFile(x));
-      await Promise.map(basicDirectories, x => fs.ensureDir(x));
-      await Promise.map(missingSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+      await bluebirdPromise.map(basicStructure, x => fs.ensureFile(x));
+      await bluebirdPromise.map(basicDirectories, x => fs.ensureDir(x));
+      await bluebirdPromise.map(missingSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
 
       const result = await structure.getStructureInfo(path.resolve(temp, 'pluginOne'), missingSpecs[0].file, structure.getComponentsOnDisk);
 
@@ -287,8 +287,8 @@ describe('lib/structure', () => {
   describe('getComponentsLoaderSchema()', () => {
 
     before(async () => {
-      await Promise.map(basicStructure, x => fs.ensureFile(x));
-      await Promise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+      await bluebirdPromise.map(basicStructure, x => fs.ensureFile(x));
+      await bluebirdPromise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
     });
 
     after(async () => {
@@ -337,8 +337,8 @@ describe('lib/structure', () => {
   describe('getPluginsLoaderSchema()', () => {
 
     before(async () => {
-      await Promise.map(basicStructure, x => fs.ensureFile(x));
-      await Promise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
+      await bluebirdPromise.map(basicStructure, x => fs.ensureFile(x));
+      await bluebirdPromise.map(orderdSpecs, x => fs.outputFile(x.file, JSON.stringify(x.content)));
     });
 
     after(async () => {
