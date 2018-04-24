@@ -6,6 +6,8 @@ manage and generate a powerful fully organized and customizable node.js server o
 build, generate, edit, and share your project design and flow with your team  
 prebuilt extensions and tools to help you focus on your business idea
 
+Maintainer: [Ahmed Ali](https://github.com/AhmedAli7O1)
+
 ![build](https://travis-ci.org/nodearch/arch.svg?branch=master)
 ![npm](https://img.shields.io/npm/v/nodearch.svg)
 
