@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 const _ = require('lodash');
 const exampleManager = require('../lib/example');
 const path = require('path');
+const compare = require('../utils/compare');
 
 let nodearch;
 
@@ -36,7 +37,7 @@ async function exampleToInstall () {
       name: 'selectedTagVersion',
       message: `choose from the available tags for the example ${selectedExample.name}`,
       pageSize: 5,
-      choices: _.map(availableTags, 'version')
+      choices:  _.map(availableTags, 'version').sort(compare.semver).reverse()
     }]);
     selectedExample.selectedTag = _.find(availableTags, { version: selectedTagVersion });
   }

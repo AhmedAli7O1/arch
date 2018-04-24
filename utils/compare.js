@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 
-function _semverCompare (a, b) {
+function semver (a, b) {
   var pa = a.split('.');
   var pb = b.split('.');
   for (var i = 0; i < 3; i++) {
@@ -16,9 +16,9 @@ function _semverCompare (a, b) {
   return 0;
 }
 
-function semver (...vers) {
-  return _.last(vers.sort(_semverCompare));
-}
+// function semver (...vers) {
+//   return _.last(vers.sort(_semverCompare));
+// }
 
 module.exports = {
   semver
