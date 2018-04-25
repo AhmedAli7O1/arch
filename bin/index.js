@@ -4,10 +4,24 @@
 
 const NodeArch = require('../lib/nodearch');
 const cli = require('cli');
+const fs = require('../utils/fs');
+const path = require('path');
+const paths = require('../text/paths.json');
 
-const nodearch = new NodeArch({ noLog: true });
+const appDir = getAppPath();
+
+const nodearch = new NodeArch({ noLog: true, dir: appDir });
 const pkg = require('./pkg')(nodearch);
 const example = require('./example')(nodearch);
+
+
+function getAppPath (startingDir) {
+  const criteriaFn = function (dirPath = process.cwd()) {
+    return fs.existsSync(path.join(dirPath, paths.arch));
+  };
+  return fs.searchUp(criteriaFn, startingDir) || process.cwd();
+}
+
 
 cli.parse(
   {
