@@ -10,7 +10,7 @@ const paths = require('../text/paths.json');
 
 const appDir = getAppPath();
 
-const nodearch = new NodeArch({ noLog: true, dir: appDir });
+const nodearch = new NodeArch({ noLog: true, dir: appDir || process.cwd() });
 const pkg = require('./pkg')(nodearch);
 const example = require('./example')(nodearch);
 
@@ -19,7 +19,22 @@ function getAppPath (startingDir) {
   const criteriaFn = function (dirPath = process.cwd()) {
     return fs.existsSync(path.join(dirPath, paths.arch));
   };
-  return fs.searchUp(criteriaFn, startingDir) || process.cwd();
+  return fs.searchUp(criteriaFn, startingDir);
+}
+
+function appNotExist () {
+  nodearch.log.error(
+    `cannot identify the current directory as a NodeArch App, 
+    if this is your app directory, then place a nodearch.json file`
+  );
+}
+
+function appIsExist () {
+  nodearch.log.error(
+    `the current directory or a parent directory in the path is already a NodeArch project.
+    NodeArch project location is determined by the location of the nodearch.json file,
+    and it's currently located at ${appDir}`
+  );
 }
 
 
@@ -45,13 +60,13 @@ async function exec() {
 
   switch (cli.command) {
     case 'install':
-      await pkg.install(cli.args);
+      appDir ? await pkg.install(cli.args) : appNotExist();
       break;
     case 'remove':
-      await pkg.remove(cli.args);
+      appDir ? await pkg.remove(cli.args) : appNotExist();
       break;
     case 'generate':
-      await example.generate(cli.args);
+      appDir ? appIsExist() : await example.generate(cli.args);
       break;
   }
 
