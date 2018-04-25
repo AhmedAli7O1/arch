@@ -1,6 +1,6 @@
 {
   "name": "nodearch",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "manage and generate a powerful fully organized and customizable node.js server of your choice",
   "main": "index.js",
   "scripts": {
