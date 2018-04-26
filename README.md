@@ -66,7 +66,7 @@ nodearch is a set of libraries, that help you not just getting up and running fa
     pluggable user code, let's assume every feature in the app could be a plugin itself, for the seek of separation and reusability.
 
   * Extensions  
-    modules that contain some code which is not related directly to the app business logic e.g ( connect to mongoose, integrate with mocha for testing...etc )also extensions could be a user defined modules or predefined nodearch extensions that you can directly install, using the nodearch CLI tool.
+    modules that contain some code which is not related directly to the app business logic e.g ( connect to mongoose, integrate with mocha for testing...etc )also extensions could be a user defined modules or predefined nodearch extensions that you can directly add, using the nodearch CLI tool.
 
   * Env Config  
     environment configurations are the way that you define your app configurations for each environment. 
@@ -153,7 +153,7 @@ you can safely go to your new project folder and run `npm start` or `npm test`
 
 - You can find some or our pre-defined extensions [here](https://github.com/nodearch).
 
-- You can use our [CLI Tool](#extensions-generators) to directly install the extensions.
+- You can use our [CLI Tool](#extensions-generators) to directly add the extensions.
 
 - Extensions should expose one (or more) of the three functions **Before**, **Component**, **After**.
 
@@ -216,22 +216,22 @@ module.exports = {
 ### Install Extensions
 
 ```shell
-nodearch install
+nodearch add
 ```
 
 - This will list all extensions available on our [repository](https://github.com/nodearch) 
 - Select the available extensions then the tool will list the version for each extension found.
-- Select the version for each extension and the extensions will be installed by default to the `extensions` folder.
-- If (for each extension) dependencies are found, the tool will only install the node modules that are not already installed. It'll also list if any dependencies conflict
+- Select the version for each extension and the extensions will be added by default to the `extensions` folder.
+- If (for each extension) dependencies are found, the tool will only add the node modules that are not already installed. It'll also list if any dependencies conflict
 
-		**Ex.** If the extension requires lodash V3 while you have V4, it will **NOT** install lodash, however it'll display a warning that there are conflicts in this module and list the versions.
+		**Ex.** If the extension requires lodash V3 while you have V4, it will **NOT** add lodash, however it'll display a warning that there are conflicts in this module and list the versions.
 
 
 
-- Install certain extension directly without listing all available extensions
+- add certain extension directly without listing all available extensions
 
   ```shell
-  nodarch install mocha
+  nodarch add mocha
   ```
 
 
@@ -239,7 +239,7 @@ nodearch install
 - Repeat as many extensions as you want
 
   ```shell
-  nodearch install mocha mngoose
+  nodearch add mocha mngoose
   ```
 
 
@@ -247,7 +247,7 @@ nodearch install
 - You can also specify the versions for the extensions.
 
   ```shell
-  nodearch install mongoose@1.0.2
+  nodearch add mongoose@1.0.2
   ```
 
   If the version does not exist it'll display a warning and ask you to choose an existing version.
@@ -257,10 +257,10 @@ nodearch install
 - You can specify the versions for some extensions only
 
   ```shell
-  nodearch install mongoose@1.0.2 mocha
+  nodearch add mongoose@1.0.2 mocha
   ```
 
-  In this case, the tool will ask only about **mocha** version while installing mongoose version 1.0.2 directly
+  In this case, the tool will ask only about **mocha** version while adding mongoose version 1.0.2 directly
 
 ------
 
@@ -418,7 +418,7 @@ nodearch install
 Install Node Arch globally
 
 ```shell
-npm install -g nodearch
+npm i -g nodearch
 ```
 
 

@@ -45,9 +45,9 @@ cli.parse(
     // work: [false, 'What kind of work to do', 'string', 'sleep']   //     --work STRING What kind of work to do 
   },
   {
-    install: 'install nodearch extension',
+    add: 'add nodearch extension',
     remove: 'remove nodearch extension',
-    generate: 'generate a full and ready to try nodearch example'
+    generate: 'generate full and ready to go nodearch example'
   }
 );
 
@@ -59,7 +59,7 @@ async function exec() {
   await nodearch.init();
 
   switch (cli.command) {
-    case 'install':
+    case 'add':
       appDir ? await pkg.install(cli.args) : appNotExist();
       break;
     case 'remove':
