@@ -272,6 +272,10 @@ nodearch add
 
 ------
 
+### Share Your Extensions
+if you already wrote an extension, and you'd like to share it with us, please open a new issue and submit the code in any compressed format.
+------
+
 ### Main Project
 
 - Main project is structured inside the `api` folder.
