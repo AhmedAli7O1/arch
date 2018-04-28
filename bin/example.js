@@ -48,11 +48,21 @@ async function exampleToInstall () {
 
 async function getExampleInfo (args) {
 
+  let done = false;
+  const dirContent = await nodearch.fs.dirContent(process.cwd());
+
   const exampleInfo = {
     name: args[0]
   };
 
-  if (!exampleInfo.name) {
+  if (_.includes(dirContent.folders, exampleInfo.name)) {
+    nodearch.log.error(`directory with the name ${exampleInfo.name} is already exist`);
+    exampleInfo.name = null;
+  }
+
+  while(!exampleInfo.name) {
+    nodearch.log.info('please enter your project name');
+
     const { projectName } = await inquirer.prompt([{
       type: 'input',
       name: 'projectName',
@@ -60,7 +70,12 @@ async function getExampleInfo (args) {
       default: 'test-project'
     }]);
 
-    exampleInfo.name = projectName;
+    if (_.includes(dirContent.folders, projectName)) {
+      nodearch.log.error(`directory with the name ${projectName} is already exist`);
+    }
+    else {
+      exampleInfo.name = projectName;  
+    }
   }
 
   return exampleInfo;
