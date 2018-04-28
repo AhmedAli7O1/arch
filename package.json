@@ -1,6 +1,6 @@
 {
   "name": "nodearch",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "manage and generate a powerful fully organized and customizable node.js server of your choice",
   "main": "index.js",
   "scripts": {
@@ -50,23 +50,23 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "chai-as-promised": "^7.1.1",
-    "chalk": "^2.3.2",
+    "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "cli": "^1.0.1",
     "decompress": "^4.2.0",
     "extract-zip": "^1.6.6",
     "fs-extra": "^5.0.0",
-    "inquirer": "^5.1.0",
-    "joi": "^13.1.1",
-    "lodash": "^4.17.4",
+    "inquirer": "^5.2.0",
+    "joi": "^13.2.0",
+    "lodash": "^4.17.10",
     "request": "^2.85.0",
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
-    "mocha": "^4.1.0",
-    "nyc": "^11.6.0",
-    "sinon": "^4.4.4"
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1",
+    "sinon": "^4.5.0"
   }
 }
