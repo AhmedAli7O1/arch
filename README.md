@@ -470,9 +470,13 @@ nodearch console does actually run your app in an interactive console [Node.js R
 and exposes a global reference `nodearch` identical to the resulting object from `const nodearch = require('nodearch');`
 which contains all your project dependencies, extensions...etc
 
+this means your app will still functional and listen for incoming connections as usual the only difference is the terminal 
+will be interactive, think of it as the Google Chrome's console, where you can interact live with your application scope while running.
+
 `nodearch console` can be used from the root app directory or any sub/nested directory in your app.
 
 Usage Examples:
+
 running specific function in your project for testing purposes
 ```shell
 # run console
@@ -484,6 +488,12 @@ nodearch> [ { _id: 5ae4cea2f9d3d23b724eb125,
     name: 'user one',
     age: 20} ]
 ``` 
+
+try to log your current loaded configurations
+```shell
+nodearch console
+nodearch> nodearch.config
+```
 
 * NOTE: use the tab key to autocomplete when typying anything to easily find your dependencies,functions...etc  
 
