@@ -2,25 +2,14 @@
 
 'use strict';
 
-const NodeArch = require('../lib/nodearch');
 const cli = require('cli');
-const fs = require('../utils/fs');
 const path = require('path');
-const paths = require('../text/paths.json');
-
-const appDir = getAppPath();
-
-const nodearch = new NodeArch({ noLog: true, dir: appDir || process.cwd() });
+const events = require('../text/events');
+const nodearch = require('./init');
 const pkg = require('./pkg')(nodearch);
 const example = require('./example')(nodearch);
 
-
-function getAppPath (startingDir) {
-  const criteriaFn = function (dirPath = process.cwd()) {
-    return fs.existsSync(path.join(dirPath, paths.arch));
-  };
-  return fs.searchUp(criteriaFn, startingDir);
-}
+const appDir = nodearch.cli.app;
 
 function appNotExist () {
   nodearch.log.error(
@@ -45,7 +34,8 @@ cli.parse(
     // work: [false, 'What kind of work to do', 'string', 'sleep']   //     --work STRING What kind of work to do 
   },
   {
-    start: 'start server',
+    start: 'start server that exist in the current or parent directory',
+    console: 'start server that exist in the current or parent directory in interactive mode',
     add: 'add nodearch extension',
     remove: 'remove nodearch extension',
     generate: 'generate full and ready to go nodearch example'
@@ -60,7 +50,16 @@ async function exec() {
 
   switch (cli.command) {
     case 'start':
-    appDir ? require(path.join(appDir, 'index.js')) : appNotExist();
+      appDir ? require(path.join(appDir, 'index.js')) : appNotExist();
+      break;
+    case 'console':
+      if (appDir)  {
+        nodearch.on(events.started, () => nodearch.console());
+        require(path.join(appDir, 'index.js'));
+      }
+      else {
+        appNotExist();
+      }
       break;
     case 'add':
       appDir ? await pkg.install(cli.args) : appNotExist();

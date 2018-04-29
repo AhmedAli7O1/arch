@@ -15,14 +15,21 @@ module.exports = {
     const log = createLog(arguments);
     console.log(chalk.green.apply(null, log));
   },
+  
   error: function () {
     const log = createLog(arguments);
     console.log(chalk.red.apply(null, log));
   },
+  
   warn: function () {
     const log = createLog(arguments);
     console.log(chalk.yellow.apply(null, log));
-  }
+  },
+
+  debug: function () {
+    const log = createLog(arguments);
+    console.log(chalk.blue.apply(null, log));
+  },
 
 };
 
