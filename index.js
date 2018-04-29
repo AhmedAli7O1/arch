@@ -4,12 +4,14 @@ const NodeArch = require('./lib/nodearch');
 const path = require('path');
 const _ = require('lodash');
 
-const parentOfParent = _.get(module, 'parent.parent.filename');
+const callerModule = _.get(module, 'parent.parent.filename');
+const callerDirPath = callerModule ? path.dirname(callerModule) : null;
+const callerDirName = callerDirPath ? path.basename(callerDirPath) : null;
 
 let nodearch;
 
-if (parentOfParent && path.basename(path.dirname(parentOfParent)) === 'bin') {
-  nodearch = require('./bin/init');  
+if (callerDirName === 'bin') {
+  nodearch = require(path.join(callerDirPath, 'init'));
 }
 else {
   nodearch = new NodeArch({ dir: path.dirname(module.parent.filename) });
