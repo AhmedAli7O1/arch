@@ -25,7 +25,7 @@ function getAppPath (startingDir) {
 function appNotExist () {
   nodearch.log.error(
     `cannot identify the current directory as a NodeArch App, 
-    if this is your app directory, then place a nodearch.json file`
+    if this is your app directory, then place nodearch.json file`
   );
 }
 
@@ -45,6 +45,7 @@ cli.parse(
     // work: [false, 'What kind of work to do', 'string', 'sleep']   //     --work STRING What kind of work to do 
   },
   {
+    start: 'start server',
     add: 'add nodearch extension',
     remove: 'remove nodearch extension',
     generate: 'generate full and ready to go nodearch example'
@@ -53,12 +54,14 @@ cli.parse(
 
 async function exec() {
 
-  nodearch.log.info(`Node.js Server/Architecture Manager v${nodearch.pkgInfo.version}`);
-  nodearch.log.info(`NodeArch CLI`);
+  nodearch.log.info(`ARCH CLI v${nodearch.pkgInfo.version}`);
 
   await nodearch.init();
 
   switch (cli.command) {
+    case 'start':
+    appDir ? require(path.join(appDir, 'index.js')) : appNotExist();
+      break;
     case 'add':
       appDir ? await pkg.install(cli.args) : appNotExist();
       break;
