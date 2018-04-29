@@ -25,12 +25,14 @@ Maintainer: [Ahmed Ali](https://github.com/AhmedAli7O1)
   * [Getting Started](#getting-started)
   * [Configuration](#configuration)
   * [Extensions](#extensions)
-      * [Install Extensions](#install-extensions)
-      * [Available Extensions](#available-extensions)
+    * [Install Extensions](#install-extensions)
+    * [Available Extensions](#available-extensions)
   * [Main Project](#main-project)
   * [index.js](#index)
   * [nodearch.json](#nodearch.json)
   * [Other Features](#other-features)
+  * [CLI](#cli)
+    * [Console](#console)
 
 ------
   
@@ -130,7 +132,23 @@ you can safely go to your new project folder and run `npm start` or `npm test`
         * Controller: to control the data flow, e.g a controller could aggregate on many services to respond on client requests for a specific endpoint.
     * example for multiple plugins.
 
-  for more info about how to use the CLI tool, please read [CLI Tool](#cli-tool)
+* express.js  
+  a full express server with MongoDB and most of the setup that comes with the express generator
+
+  Requirements:
+    * running MongoDB local instance, or you'll have to disable the mongoose extenstion using `nodearch remove mongoose` and removing
+    it from the `nodearch.json` file too.
+
+  Features:
+  * MongoDB integration using [Mongoose](http://mongoosejs.com/)
+  * Testing integration and example using [Mocha](https://mochajs.org/)
+  * Controller -> Service -> Model Flow Example
+      * Model: contains Mongoose Schema
+      * Service: contains your business logic, separated as multiple services.
+      * Controller: to control the data flow, e.g a controller could aggregate on many services to respond on client requests for a specific endpoint.
+  * example for multiple plugins.
+
+  for more info about how to use the CLI tool, please read [CLI](#cli)
 -----
 
 ### Configuration
@@ -414,10 +432,20 @@ if you already wrote an extension, and you'd like to share it with us, please op
   - If any function throws an error, pipeline stops.
   - Each function takes arguments initialized in the pipeline
   - The pipeline returns the result of the last function in the pipeline.
+  
+  call: `nodearch.pipeline([Functions])`
+
+- **getList**
+  - return a list of either modules or components from all plugins.
+
+  call: `nodearch.getList(type, itemName)`  
+  usage: 
+    - `nodearch.getList('module', 'routes')`
+    - `nodearch.getList('component', 'controllers')`
 
 ------
 
-## CLI Tool
+## CLI
 
 Install Node Arch globally
 
@@ -425,6 +453,39 @@ Install Node Arch globally
 npm i -g nodearch
 ```
 
+Commands:
+
+```shell
+start     # alias (s) # start server that exist in the current or parent directory 
+console   # alias (c) # start server that exist in the current or parent directory in interactive mode 
+add       # alias (a) # add nodearch extension
+remove    # alias (r) # remove nodearch extension
+generate  # alias (g) # generate full and ready to go nodearch example 
+```
+
+Example: `nodearch console`
+
+### Console
+nodearch console does actually run your app in an interactive console [Node.js Repl](https://nodejs.org/api/repl.html) 
+and exposes a global reference `nodearch` identical to the resulting object from `const nodearch = require('nodearch');`
+which contains all your project dependencies, extensions...etc
+
+`nodearch console` can be used from the root app directory or any sub/nested directory in your app.
+
+Usage Examples:
+running specific function in your project for testing purposes
+```shell
+# run console
+nodearch console
+# execute any function in your app
+nodearch> nodearch.deps.userPlugin.services.UserService.find().then(res => console.log(res));
+# here is the result
+nodearch> [ { _id: 5ae4cea2f9d3d23b724eb125,
+    name: 'user one',
+    age: 20} ]
+``` 
+
+* NOTE: use the tab key to autocomplete when typying anything to easily find your dependencies,functions...etc  
 
 <hr>
 <br>
