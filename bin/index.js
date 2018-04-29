@@ -8,6 +8,7 @@ const events = require('../text/events');
 const nodearch = require('./init');
 const pkg = require('./pkg')(nodearch);
 const example = require('./example')(nodearch);
+const archConsole = require('../lib/console')(nodearch);
 
 const appDir = nodearch.cli.app;
 
@@ -54,7 +55,7 @@ async function exec() {
       break;
     case 'console':
       if (appDir)  {
-        nodearch.on(events.started, () => nodearch.console());
+        nodearch.on(events.started, () => archConsole());
         require(path.join(appDir, 'index.js'));
       }
       else {
