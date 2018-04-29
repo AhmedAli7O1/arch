@@ -6,6 +6,8 @@ const cli = require('cli');
 const inquirer = require('inquirer');
 const _ = require('lodash');
 const packageManager = require('../lib/pkg');
+const compare = require('../utils/compare');
+
 
 let nodearch;
 
@@ -68,7 +70,7 @@ async function resolveTags (requestedPkgs) {
         name: 'tags',
         message: `choose from the available tags for the package ${requestedPkg.name}`,
         pageSize: 5,
-        choices: _.map(requestedPkg.tags, 'version')
+        choices: _.map(requestedPkg.tags, 'version').sort(compare.semver).reverse()
       }]);
       requestedPkg.requestedTag = answers.tags;
     }
