@@ -9,8 +9,29 @@ const nodearch = require('./init');
 const pkg = require('./pkg')(nodearch);
 const example = require('./example')(nodearch);
 const archConsole = require('../lib/console')(nodearch);
+const compare = require('../utils/compare');
 
 const appDir = nodearch.cli.app;
+
+nodearch.logger.info(`ARCH CLI v${nodearch.pkgInfo.version}`);
+
+if (appDir) {
+  // check local nodearch
+  const localArchPkgPath = path.join(appDir, 'node_modules', 'nodearch', 'package.json');
+  try {
+    const localArchPkg = require(localArchPkgPath);
+    const compatiable = compare.compatiable(localArchPkg.version, nodearch.pkgInfo.version); 
+    nodearch.logger.info(`local version ${localArchPkg.version}`);
+    if (!compatiable) {
+      nodearch.logger.error(
+        `your local version is not compatiable with the global nodearch.
+        either update your local version or downgrade your global nodearch `
+      );
+      process.exit(1);
+    }
+  }
+  catch (e) {}
+}
 
 function appNotExist () {
   nodearch.logger.error(
@@ -44,8 +65,6 @@ cli.parse(
 );
 
 async function exec() {
-
-  nodearch.logger.info(`ARCH CLI v${nodearch.pkgInfo.version}`);
 
   await nodearch.init();
 
