@@ -1,7 +1,6 @@
 'use strict';
 
 const { createLogger, format, transports } = require('winston');
-const moment = require('moment');
 const { combine, timestamp, label, prettyPrint, printf } = format;
 
 const archFormat = printf(info => {

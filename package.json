@@ -1,6 +1,6 @@
 {
   "name": "nodearch",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "manage and generate a powerful fully organized and customizable node.js server of your choice",
   "main": "index.js",
   "scripts": {
@@ -60,7 +60,8 @@
     "joi": "^13.2.0",
     "lodash": "^4.17.10",
     "request": "^2.85.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "winston": "^3.0.0-rc5"
   },
   "devDependencies": {
     "chai": "^4.1.2",
