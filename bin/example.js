@@ -56,12 +56,12 @@ async function getExampleInfo (args) {
   };
 
   if (_.includes(dirContent.folders, exampleInfo.name)) {
-    nodearch.log.error(`directory with the name ${exampleInfo.name} is already exist`);
+    nodearch.logger.error(`directory with the name ${exampleInfo.name} is already exist`);
     exampleInfo.name = null;
   }
 
   while(!exampleInfo.name) {
-    nodearch.log.info('please enter your project name');
+    nodearch.logger.info('please enter your project name');
 
     const { projectName } = await inquirer.prompt([{
       type: 'input',
@@ -71,7 +71,7 @@ async function getExampleInfo (args) {
     }]);
 
     if (_.includes(dirContent.folders, projectName)) {
-      nodearch.log.error(`directory with the name ${projectName} is already exist`);
+      nodearch.logger.error(`directory with the name ${projectName} is already exist`);
     }
     else {
       exampleInfo.name = projectName;  
@@ -83,7 +83,7 @@ async function getExampleInfo (args) {
 
 async function generate (args) {
 
-  nodearch.log.info('retrieving examples info');
+  nodearch.logger.info('retrieving examples info');
 
   const selectedExample = await exampleToInstall();
 
@@ -91,7 +91,7 @@ async function generate (args) {
 
   const projectLocation = path.resolve(process.cwd(), exampleInfo.name);
   
-  nodearch.log.info(`downloading project content for your ${selectedExample.name} server`);
+  nodearch.logger.info(`downloading project content for your ${selectedExample.name} server`);
 
   await exampleManager.download({
     pkgName: selectedExample.path,
@@ -99,11 +99,11 @@ async function generate (args) {
     location: projectLocation
   });
 
-  nodearch.log.info('running `npm install` for you, if something goes wrong try to run it yourself!');
+  nodearch.logger.info('running `npm install` for you, if something goes wrong try to run it yourself!');
 
   await exampleManager.installDeps(projectLocation);
 
-  nodearch.log.info(
+  nodearch.logger.info(
     `done, now you can run: 
     cd ${exampleInfo.name} && npm start`
   );

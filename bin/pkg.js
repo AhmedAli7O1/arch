@@ -14,14 +14,14 @@ async function pkgsToInstall (requestedPkgs = []) {
   let pkgsInfo = await packageManager.pkgsInfo();
 
   if (_.isEmpty(pkgsInfo)) {
-    nodearch.log.error(`no extensions to download!`);
+    nodearch.logger.error(`no extensions to download!`);
     return [];
   }
 
   pkgsInfo = filterCompatible(pkgsInfo, nodearch.pkgInfo.version);
 
   if (_.isEmpty(pkgsInfo)) {
-    nodearch.log.error(`your version of nodearch is not compatiable with any extension version`);
+    nodearch.logger.error(`your version of nodearch is not compatiable with any extension version`);
     return [];
   }
 
@@ -86,7 +86,7 @@ async function resolveTags (requestedPkgs) {
   for (const requestedPkg of requestedPkgs) {
 
     if (requestedPkg.requestedTag && !_.find(requestedPkg.tags, { version: requestedPkg.requestedTag })) {
-      nodearch.log.warn(`package ${requestedPkg.name} with the tag ${requestedPkg.requestedTag} does not exist!`);
+      nodearch.logger.warn(`package ${requestedPkg.name} with the tag ${requestedPkg.requestedTag} does not exist!`);
       requestedPkg.requestedTag = null;
     }
 
@@ -108,7 +108,7 @@ async function resolveTags (requestedPkgs) {
 async function remove (requestedPkgs) {
 
   for (const requestedPkg of requestedPkgs) {
-    nodearch.log.info(`removing package ${requestedPkg}...`);
+    nodearch.logger.info(`removing package ${requestedPkg}...`);
     await packageManager.remove(nodearch.paths.extensions, requestedPkg);
   }
 
@@ -116,7 +116,7 @@ async function remove (requestedPkgs) {
 
 async function install(requestedPkgs = []) {
 
-  nodearch.log.info(`fetching packages info...`);
+  nodearch.logger.info(`fetching packages info...`);
 
   requestedPkgs = await pkgsToInstall(requestedPkgs);
 
@@ -124,7 +124,7 @@ async function install(requestedPkgs = []) {
 
   for (const requestedPkg of requestedPkgs) {
 
-    nodearch.log.info(`downloading package ${requestedPkg.name}...`);
+    nodearch.logger.info(`downloading package ${requestedPkg.name}...`);
     const data = await packageManager.download({ 
       pkgName: requestedPkg.name, 
       version: requestedPkg.requestedTag,

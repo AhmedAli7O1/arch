@@ -13,14 +13,14 @@ const archConsole = require('../lib/console')(nodearch);
 const appDir = nodearch.cli.app;
 
 function appNotExist () {
-  nodearch.log.error(
+  nodearch.logger.error(
     `cannot identify the current directory as a NodeArch App, 
     if this is your app directory, then place nodearch.json file`
   );
 }
 
 function appIsExist () {
-  nodearch.log.error(
+  nodearch.logger.error(
     `the current directory or a parent directory in the path is already a NodeArch project.
     NodeArch project location is determined by the location of the nodearch.json file,
     and it's currently located at ${appDir}`
@@ -80,6 +80,6 @@ async function exec() {
 exec()
   .then()
   .catch(err => {
-    nodearch.log.error(err.message);
+    nodearch.logger.error(err.message);
     console.log(err.stack);
   });
