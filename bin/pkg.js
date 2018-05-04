@@ -8,11 +8,22 @@ const _ = require('lodash');
 const packageManager = require('../lib/pkg');
 const compare = require('../utils/compare');
 
-
 let nodearch;
 
 async function pkgsToInstall (requestedPkgs = []) {
-  const pkgsInfo = await packageManager.pkgsInfo();
+  let pkgsInfo = await packageManager.pkgsInfo();
+
+  if (_.isEmpty(pkgsInfo)) {
+    nodearch.log.error(`no extensions to download!`);
+    return [];
+  }
+
+  pkgsInfo = filterCompatible(pkgsInfo, nodearch.pkgInfo.version);
+
+  if (_.isEmpty(pkgsInfo)) {
+    nodearch.log.error(`your version of nodearch is not compatiable with any extension version`);
+    return [];
+  }
 
   requestedPkgs = _.map(requestedPkgs, requestedPkg => {
     const parts = requestedPkg.split('@');
@@ -55,6 +66,21 @@ async function pkgsToInstall (requestedPkgs = []) {
   return requestedPkgs || [];
 
 } 
+
+function filterCompatible (pkgsInfo, archVersion) {
+  return _.chain(pkgsInfo)
+    .map(pkgInfo => {
+      
+      pkgInfo.tags = _.filter(pkgInfo.tags, tag => {
+        if (!tag.arch) return true;
+        return compare.compatiable(tag.arch, archVersion);
+      });
+
+      return pkgInfo.tags.length ? pkgInfo : null;
+    })
+    .compact()
+    .value();
+}
 
 async function resolveTags (requestedPkgs) {
   for (const requestedPkg of requestedPkgs) {

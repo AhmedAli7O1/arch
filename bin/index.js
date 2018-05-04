@@ -45,7 +45,7 @@ cli.parse(
 
 async function exec() {
 
-  nodearch.log.info(`ARCH CLI v${nodearch.pkgInfo.version}`);
+  nodearch.logger.info(`ARCH CLI v${nodearch.pkgInfo.version}`);
 
   await nodearch.init();
 
