@@ -14,10 +14,11 @@ function create(options = {}) {
       format.colorize(),
       label({ label: 'ARCH' }),
       timestamp(),
-      prettyPrint()
+      prettyPrint(),
+      archFormat()
     ),
     transports: [
-      new transports.Console({ format: archFormat })
+      new transports.Console()
     ]
   });
 }
