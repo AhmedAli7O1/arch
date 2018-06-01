@@ -15,7 +15,7 @@ function create(options = {}) {
       label({ label: 'ARCH' }),
       timestamp(),
       prettyPrint(),
-      archFormat()
+      archFormat
     ),
     transports: [
       new transports.Console()
