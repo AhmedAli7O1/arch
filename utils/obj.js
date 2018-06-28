@@ -24,4 +24,20 @@ function arrayToObject (array, key, value) {
   return obj;
 }
 
-module.exports = { arrayToObject };
+function filterByAttr (arr, attr, values) {
+  return _.filter(arr, x => {
+    return _.includes(values, x[attr]);
+  });
+}
+
+async function asyncMap (array, cb) {
+  return await Promise.all(_.map(array, item => {
+    return cb(item);
+  }));
+}
+
+module.exports = {
+  arrayToObject,
+  filterByAttr,
+  asyncMap
+};

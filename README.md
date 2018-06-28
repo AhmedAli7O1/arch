@@ -4,8 +4,8 @@
   <img src="https://raw.githubusercontent.com/nodearch/arch/master/resources/nodearch-logo.png" alt="NodeArch Logo" />
 </a>
 
-manage and generate a powerful fully organized and customizable node.js server of your choice  
-build, generate, edit, and share your project design and flow with your team  
+manage and generate a powerful fully organized and customizable node.js server of your choice
+build, generate, edit, and share your project design and flow with your team
 prebuilt extensions and tools to help you focus on your business idea
 
 Maintainer: [Ahmed Ali](https://github.com/AhmedAli7O1)
@@ -35,26 +35,26 @@ Maintainer: [Ahmed Ali](https://github.com/AhmedAli7O1)
     * [Console](#console)
 
 ------
-  
- 
-## Introduction: 
-  
+
+
+## Introduction:
+
 nodearch is a set of libraries, that help you not just getting up and running fast, but also helping to manage your application structure, environment specific configurations, prebuilt set of extensions to help you using tools and third parties out of the box, and you gotta break down your business irrelevant logic into your own defined extensions that register themselves on nodearch load flow, and of course break down your business logic code into separate plugins, and each plugin consist of a collection of components.
 
 -----
 
 ## Differences:
 
-* express, hapi, koa...etc  
-  
-  those are node.js frameworks, designed to create a node web server/application, on the other side nodearch is architecture/structure manager and server organizer, that works with any of the mentioned frameworks to organize the environment for the developer. 
-  
+* express, hapi, koa...etc
+
+  those are node.js frameworks, designed to create a node web server/application, on the other side nodearch is architecture/structure manager and server organizer, that works with any of the mentioned frameworks to organize the environment for the developer.
+
   so it doesn't by any mean replace or cover the node webserver framework.
 
-* sails.js, hapiarch  
-  
-  sails.js is a layer on top of express, hapi-arch is the first version of the arch framework and it's also a layer on top  of hapi.js, both frameworks does cover the underlying node server framework (express/hapi) and exposes their own APIs to help organize and structure the code, and provide some functionalities out of the box.  
-  
+* sails.js, hapiarch
+
+  sails.js is a layer on top of express, hapi-arch is the first version of the arch framework and it's also a layer on top  of hapi.js, both frameworks does cover the underlying node server framework (express/hapi) and exposes their own APIs to help organize and structure the code, and provide some functionalities out of the box.
+
   on the other side, nodearch is not bound to any node server framework, and does not cover any of their APIs, it does lay  in the same level as your node server framework (express/hapi/koa...etc) to provide it's own functionalites e.g (extensions, environment configs, plugins...etc) leaving you with a full control over your node server framework. it's not even aware of your framework and that's to achieve a full decoupled management tool for your project.
 
 -----
@@ -64,16 +64,16 @@ nodearch is a set of libraries, that help you not just getting up and running fa
 
 ### what is what?
 
-  * Plugins  
+  * Plugins
     pluggable user code, let's assume every feature in the app could be a plugin itself, for the seek of separation and reusability.
 
-  * Extensions  
+  * Extensions
     modules that contain some code which is not related directly to the app business logic e.g ( connect to mongoose, integrate with mocha for testing...etc )also extensions could be a user defined modules or predefined nodearch extensions that you can directly add, using the nodearch CLI tool.
 
-  * Env Config  
-    environment configurations are the way that you define your app configurations for each environment. 
-  
-  * Server Handler  
+  * Env Config
+    environment configurations are the way that you define your app configurations for each environment.
+
+  * Server Handler
     it's where the user put his code to start the web server using his favorite framework, i.e express, hapi, koa...etc
 
 ### the flow
@@ -96,31 +96,31 @@ the image below describes it as well:
 </div>
 
 -----
-  
+
 
 ## Getting Started
 let's start by installing the NodeArch CLI tool by
 ```bash
 npm i -g nodearch
-``` 
+```
 now it's simple as generating a full example project by
 ```bash
 nodearch g
 ```
-then choose your prefered nodejs framework, 
-press enter and the CLI tool will start preparing a new project for you, 
-by creating your folders structure, downloading the required modules to integrate your chosen framework, 
-and finally runs `npm install` for you, once all this done, 
+then choose your prefered nodejs framework,
+press enter and the CLI tool will start preparing a new project for you,
+by creating your folders structure, downloading the required modules to integrate your chosen framework,
+and finally runs `npm install` for you, once all this done,
 you can safely go to your new project folder and run `npm start` or `npm test`
 
 ### Available Examples
-* hapi.js  
-    currently we have a full `hapi.js` server example, with MongoDB and auto-generated Swagger Documentations using Joi validations.  
-    
+* hapi.js
+    currently we have a full `hapi.js` server example, with MongoDB and auto-generated Swagger Documentations using Joi validations.
+
     Requirements:
     * running MongoDB local instance, or you'll have to disable the mongoose extenstion using `nodearch remove mongoose` and removing
-    it from the `nodearch.json` file too.   
-    
+    it from the `nodearch.json` file too.
+
     Features:
     * auto generated [Swagger](https://github.com/glennjones/hapi-swagger) API documentations on http://localhost:3000/documentation
     * [Joi](https://github.com/hapijs/joi) Validation
@@ -132,7 +132,7 @@ you can safely go to your new project folder and run `npm start` or `npm test`
         * Controller: to control the data flow, e.g a controller could aggregate on many services to respond on client requests for a specific endpoint.
     * example for multiple plugins.
 
-* express.js  
+* express.js
   a full express server with MongoDB and most of the setup that comes with the express generator
 
   Requirements:
@@ -193,7 +193,7 @@ Example for a **before** function to use mongoose to initialize database connect
 'use strict';
 
 const _ = require('lodash');
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 
 const { config, log } = require('nodearch');
@@ -237,7 +237,7 @@ module.exports = {
 nodearch add
 ```
 
-- This will list all extensions available on our [repository](https://github.com/nodearch) 
+- This will list all extensions available on our [repository](https://github.com/nodearch)
 - Select the available extensions then the tool will list the version for each extension found.
 - Select the version for each extension and the extensions will be added by default to the `extensions` folder.
 - If (for each extension) dependencies are found, the tool will only add the node modules that are not already installed. It'll also list if any dependencies conflict
@@ -285,13 +285,13 @@ nodearch add
 ### Available Extensions
 
 * [mocha](https://github.com/nodearch/mocha) : JavaScript test framework
-* [mongoose](https://github.com/nodearch/mongoose) : MongoDB object modeling tool 
+* [mongoose](https://github.com/nodearch/mongoose) : MongoDB object modeling tool
 * [memwatch](https://github.com/nodearch/memwatch) : Leak Detection and Heap Diffing
 
 ------
 
 ### Share Your Extensions
-if you already wrote an extension, and you'd like to share it with us, please open a new issue and submit the code in any compressed format.
+if you already wrote an extension, and you'd like to share it with us, publish it as npm module on npmjs and add **nodearch-extension** in the keywords list so we can find it within the nodearch cli
 ------
 
 ### Main Project
@@ -306,7 +306,7 @@ if you already wrote an extension, and you'd like to share it with us, please op
 
   - It specifies the order of loading of files.
 
-  - It's used to determine the order of loading of plugins or the order of loading of each item inside each plugin (depending on the directory it's found in). 
+  - It's used to determine the order of loading of plugins or the order of loading of each item inside each plugin (depending on the directory it's found in).
 
   - Example for spec.json inside a plugin
 
@@ -367,7 +367,7 @@ if you already wrote an extension, and you'd like to share it with us, please op
 
 - Contains the start of the server framework you use (hapi, express, ..etc).
 
-- Example for start for **hapi:** 
+- Example for start for **hapi:**
 
   ```javascript
   'use strict';
@@ -396,8 +396,8 @@ if you already wrote an extension, and you'd like to share it with us, please op
     await server.start();
     arch.log.info(`Server running at: ${server.info.uri}`);
     return server;
-    
-  } 
+
+  }
 
   NodeArch.start(serverHandler);
   ```
@@ -427,19 +427,19 @@ if you already wrote an extension, and you'd like to share it with us, please op
 
 ### Other Features
 
-- **Pipelines:** 
+- **Pipelines:**
   - Takes functions as arguments & executes them in sequence.
   - If any function throws an error, pipeline stops.
   - Each function takes arguments initialized in the pipeline
   - The pipeline returns the result of the last function in the pipeline.
-  
+
   call: `nodearch.pipeline([Functions])`
 
 - **getList**
   - return a list of either modules or components from all plugins.
 
-  call: `nodearch.getList(type, itemName)`  
-  usage: 
+  call: `nodearch.getList(type, itemName)`
+  usage:
     - `nodearch.getList('module', 'routes')`
     - `nodearch.getList('component', 'controllers')`
 
@@ -456,21 +456,21 @@ npm i -g nodearch
 Commands:
 
 ```shell
-start     # alias (s) # start server that exist in the current or parent directory 
-console   # alias (c) # start server that exist in the current or parent directory in interactive mode 
+start     # alias (s) # start server that exist in the current or parent directory
+console   # alias (c) # start server that exist in the current or parent directory in interactive mode
 add       # alias (a) # add nodearch extension
 remove    # alias (r) # remove nodearch extension
-generate  # alias (g) # generate full and ready to go nodearch example 
+generate  # alias (g) # generate full and ready to go nodearch example
 ```
 
 Example: `nodearch console`
 
 ### Console
-nodearch console does actually run your app in an interactive console [Node.js Repl](https://nodejs.org/api/repl.html) 
+nodearch console does actually run your app in an interactive console [Node.js Repl](https://nodejs.org/api/repl.html)
 and exposes a global reference `nodearch` identical to the resulting object from `const nodearch = require('nodearch');`
 which contains all your project dependencies, extensions...etc
 
-this means your app will still functional and listen for incoming connections as usual the only difference is the terminal 
+this means your app will still functional and listen for incoming connections as usual the only difference is the terminal
 will be interactive, think of it as the Google Chrome's console, where you can interact live with your application scope while running.
 
 `nodearch console` can be used from the root app directory or any sub/nested directory in your app.
@@ -487,7 +487,7 @@ nodearch> nodearch.deps.userPlugin.services.UserService.find().then(res => conso
 nodearch> [ { _id: 5ae4cea2f9d3d23b724eb125,
     name: 'user one',
     age: 20} ]
-``` 
+```
 
 try to log your current loaded configurations
 ```shell
@@ -495,7 +495,7 @@ nodearch console
 nodearch> nodearch.config
 ```
 
-* NOTE: use the tab key to autocomplete when typying anything to easily find your dependencies,functions...etc  
+* NOTE: use the tab key to autocomplete when typying anything to easily find your dependencies,functions...etc
 
 <hr>
 <br>
