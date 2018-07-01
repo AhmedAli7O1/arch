@@ -69,14 +69,19 @@ async function exec() {
 
   await nodearch.init();
 
-  const registry = await registryClient({
-    logger: nodearch.logger,
-    config: {
-      location: nodearch.paths.extensions,
-      keyword: 'nodearch-extension',
-      app: appDir
-    }
-  });
+  let registry;
+
+  if (appDir) {
+    registry = await registryClient({
+      logger: nodearch.logger,
+      config: {
+        location: nodearch.paths.extensions,
+        keyword: 'nodearch-extension',
+        app: appDir
+      }
+    });
+  }
+
 
   switch (cli.command) {
     case 'start':
