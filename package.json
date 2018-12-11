@@ -1,6 +1,6 @@
 {
   "name": "nodearch",
-  "version": "1.1.1",
+  "version": "1.1.5",
   "description": "manage and generate a powerful fully organized and customizable node.js server of your choice",
   "main": "index.js",
   "scripts": {
@@ -60,7 +60,7 @@
     "joi": "^13.2.0",
     "lodash": "^4.17.10",
     "npm-registry-client": "^8.5.1",
-    "request": "^2.85.0",
+    "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "winston": "^3.0.0-rc5"
   },
@@ -68,7 +68,7 @@
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
     "mocha": "^5.1.1",
-    "nyc": "^11.7.1",
+    "nyc": "^13.1.0",
     "sinon": "^4.5.0"
   }
 }
