@@ -1,9 +1,0 @@
-{
-    "config": "config",
-    "api": "api",
-    "spec": "spec.json",
-    "arch": "nodearch.json",
-    "extensions": "extensions",
-    "pkgTemp": "pkgtemp",
-    "bootstrap": "bootstrap.js"
-  }
