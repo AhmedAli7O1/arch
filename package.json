@@ -1,37 +1,17 @@
 {
   "name": "nodearch",
-  "version": "1.1.1",
-  "description": "manage and generate a powerful fully organized and customizable node.js server of your choice",
+  "version": "2.0.0",
+  "description": "microservices toolkit",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha ./test/**/*.spec.js",
+    "test": "nyc mocha ./test/*.spec.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "bin": {
     "nodearch": "./bin/index.js"
   },
   "keywords": [
-    "node_server",
-    "hapijs",
-    "api",
-    "mvc",
-    "structure",
-    "architecture",
-    "framework",
-    "express",
-    "arch",
-    "nodearch",
-    "hapi-arch",
-    "express-arch",
-    "server",
-    "generate",
-    "generator",
-    "design",
-    "flow",
-    "extensions",
-    "plugins",
-    "env",
-    "cli"
+    "nodearch"
   ],
   "author": "https://github.com/AhmedAli7O1",
   "license": "MIT",
@@ -47,28 +27,13 @@
   "engines": {
     "node": ">=8.0.0 <*"
   },
-  "dependencies": {
-    "bluebird": "^3.5.1",
-    "chai-as-promised": "^7.1.1",
-    "chalk": "^2.4.1",
-    "cheerio": "^1.0.0-rc.2",
-    "cli": "^1.0.1",
-    "decompress": "^4.2.0",
-    "extract-zip": "^1.6.6",
-    "fs-extra": "^5.0.0",
-    "inquirer": "^5.2.0",
-    "joi": "^13.2.0",
-    "lodash": "^4.17.10",
-    "npm-registry-client": "^8.5.1",
-    "request": "^2.85.0",
-    "request-promise": "^4.2.2",
-    "winston": "^3.0.0-rc5"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
-    "mocha": "^5.1.1",
-    "nyc": "^11.7.1",
-    "sinon": "^4.5.0"
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "sinon": "^7.2.2"
   }
 }

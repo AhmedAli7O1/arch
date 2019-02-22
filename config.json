@@ -1,0 +1,13 @@
+{
+  "supportedFileTypes": [
+    ".js",
+    ".json"
+  ],
+  "archConfig": {
+    "filename": "nodearch.json",
+    "defaults": {
+      "appDir": "app",
+      "orderPath": "order.json"
+    }
+  }
+}

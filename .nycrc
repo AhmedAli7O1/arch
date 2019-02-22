@@ -6,12 +6,10 @@
   "functions": 0,
   "branches": 0,
   "include": [
-    "lib/**/*.js",
-    "utils/**/*.js"
+    "lib/**/*.js"
   ],
   "exclude": [
-    "test/**/*.js",
-    "utils/log.js"
+    "test/*.spec.js"
   ],
   "cache": true,
   "all": true
