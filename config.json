@@ -3,6 +3,14 @@
     ".js",
     ".json"
   ],
+  "logger": {
+    "prefix": {
+      "info": "[INFO]:",
+      "debug": "[DEBUG]:",
+      "error": "[ERROR]:",
+      "warn": "[WARN]:"
+    }
+  },
   "archConfig": {
     "filename": "nodearch.json",
     "defaults": {
