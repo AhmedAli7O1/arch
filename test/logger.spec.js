@@ -10,15 +10,16 @@ const { expect } = chai;
 describe("logger", () => {
   beforeEach(() => {
     logger.config({ enabled: true });
-    
+
     /*
      * stub console.log to prevent logging to the console while testing the logging
      * but doesn't interrupt any other functionality that uses the console.log function as well.
-     * by filtring out any log starts with TEST7O1 and color red
+     * by filtering out any log starts with TEST7O1 and color red
     */
     sinon.stub(console, 'log').callsFake((...args) => {
-      if (!args[0].match(/TEST7O1/g)) 
+      if (!args[0].match(/TEST7O1/g)) {
         process.stdout.write(util.format(...args) + '\n');
+      }
     });
   });
 
@@ -40,7 +41,7 @@ describe("logger", () => {
       logger.config({ enabled: false });
 
       logger.internals.print(logger.internals.colors.fgRed, "TEST7O1");
-      expect(console.log.called).to.be.false;  
+      expect(console.log.called).to.be.false;
     });
 
     it("should combine multiple params into one string", () => {
@@ -58,28 +59,28 @@ describe("logger", () => {
   describe("error", () => {
     it("should log to the console with red color", () => {
       logger.error("hello", "world", "TEST7O1");
-      expect(console.log.calledWith("\u001b[31mhello world TEST7O1\u001b[0m")).to.be.true;
+      expect(console.log.calledWithMatch(`\u001b[31m[ERROR]: ${new Date().toDateString()} >> hello world TEST7O1\u001b[0m`)).to.be.true;
     });
   });
 
   describe("warn", () => {
     it("should log to the console with yellow color", () => {
       logger.warn("hello", "world", "TEST7O1");
-      expect(console.log.calledWith("\u001b[33mhello world TEST7O1\u001b[0m")).to.be.true;
+      expect(console.log.calledWith(`\u001b[33m[WARN]: ${new Date().toDateString()} >> hello world TEST7O1\u001b[0m`)).to.be.true;
     });
   });
 
   describe("info", () => {
     it("should log to the console with green color", () => {
       logger.info("hello", "world", "TEST7O1");
-      expect(console.log.calledWith("\u001b[32mhello world TEST7O1\u001b[0m")).to.be.true;
+      expect(console.log.calledWith(`\u001b[32m[INFO]: ${new Date().toDateString()} >> hello world TEST7O1\u001b[0m`)).to.be.true;
     });
   });
 
   describe("debug", () => {
     it("should log to the console with blue color", () => {
       logger.debug("hello", "world", "TEST7O1");
-      expect(console.log.calledWith("\u001b[34mhello world TEST7O1\u001b[0m")).to.be.true;
+      expect(console.log.calledWith(`\u001b[34m[DEBUG]: ${new Date().toDateString()} >> hello world TEST7O1\u001b[0m`)).to.be.true;
     });
   });
 });
