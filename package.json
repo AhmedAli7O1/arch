@@ -54,7 +54,7 @@
     "cheerio": "^1.0.0-rc.2",
     "cli": "^1.0.1",
     "decompress": "^4.2.0",
-    "extract-zip": "^1.6.6",
+    "extract-zip": "^1.6.8",
     "fs-extra": "^5.0.0",
     "inquirer": "^5.2.0",
     "joi": "^13.2.0",
