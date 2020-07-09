@@ -58,7 +58,7 @@
     "fs-extra": "^5.0.0",
     "inquirer": "^5.2.0",
     "joi": "^13.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.16",
     "npm-registry-client": "^8.5.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
